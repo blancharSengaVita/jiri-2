@@ -1,0 +1,27 @@
+.guest-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFF9F3;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__container:first-child {
+        margin-block-end: 1.5rem;
+    }
+
+    &__title {
+        color: black;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,84 @@
+body {
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 1.625rem;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+a {
+    text-decoration: underline;
+    color: #005CE7;
+}
+
+a:visited {
+    text-decoration: underline;
+    color: #005CE7;
+}
+
+form {
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 0 1px 2px rgba(00, 00, 00, 0.10);
+    border-radius: 10px;
+
+    & .form__title {
+        margin-block-end: 1rem;
+    }
+
+    .field {
+        margin-block-end: 1rem;
+    }
+
+    input {
+
+    }
+
+    label {
+        margin-block-end:0.5rem;
+    }
+
+    & .error {
+        padding-block: 0.5rem;
+        color: red;
+    }
+
+    a {
+        margin-block-end:0.5rem;
+    }
+
+    & .form__link--tiny{
+        font-size: 0.75rem;
+    }
+}
+
+input[type=text], input[type=password] {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-color: #FF6100;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    font-size: 1rem;
+    box-shadow: 0 0.25px 1px 0.25px rgba(00, 00, 00, 0.10);
+}
+
+button {
+    color: white;
+    cursor: pointer;
+    background-color: #FF6100;
+    padding-block: 0.625rem;
+    padding-inline: 0.625rem;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 1rem;
+}
+
+

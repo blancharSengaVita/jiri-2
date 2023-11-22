@@ -2,6 +2,12 @@
 /*@tailwind components;*/
 /*@tailwind utilities;*/
 
+//config
 @import "reset.scss";
-@import "base.scss";
+@import "root.scss";
+
+//layout
+@import "layout/guest.scss";
 @import "auth/login.scss";
+
+@import "auth.scss";
