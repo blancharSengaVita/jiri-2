@@ -1,6 +1,6 @@
 /*@tailwind base;*/
 /*@tailwind components;*/
 /*@tailwind utilities;*/
-body {
-    background: #ef4444;
-}
+
+@import "reset.scss";
+@import "auth/login.scss";
