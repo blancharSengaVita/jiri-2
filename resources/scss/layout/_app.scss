@@ -7,9 +7,10 @@
     grid-template-columns: minmax(0, $nav-width) 1fr;
     background-color: $background-color;
 
-
-    &__container:first-child {
-        height:100% ;
-        background-color: $nav-color;
+    &__profile {
+        display: flex;
+        justify-content: flex-end;
+        
     }
 }
+

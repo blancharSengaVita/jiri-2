@@ -1,27 +1,28 @@
-<nav class="nav">
+<nav class="menu__nav nav">
     <!-- Navigation Links -->
     <h2 class="sro"> menu de navigation principale </h2>
-    <div class="nav__container">
-        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
-        </x-nav-link>
-    </div>
-
-    <!-- Responsive Settings Options -->
-
-    <div class="">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <x-responsive-nav-link :href="route('logout')"
-                                   onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                {{ __('Log Out') }}
-            </x-responsive-nav-link>
-        </form>
-        <!-- Authentication -->
-    </div>
-
+    <ul class="nav__list">
+        <li class="nav__item {{request()->routeIs('dashboard') ? 'nav__item--active' : ''}}">
+            <a class="nav__link" href="{{route('dashboard')}}">
+                {{ __('Dashboard') }}
+            </a>
+        </li>
+        <li class="nav__item {{request()->routeIs('dashboard') ? 'nav__item--active' : ''}}">
+            <a class="nav__link" href="{{route('dashboard')}}">
+                {{ __('Jiri') }}
+            </a>
+        </li>
+        <li class="nav__item {{request()->routeIs('dashboard') ? 'nav__item--active' : ''}}">
+            <a class="nav__link" href="{{route('dashboard')}}">
+                {{ __('Contact') }}
+            </a>
+        </li>
+        <li class="nav__item {{request()->routeIs('dashboard') ? 'nav__item--active' : ''}}">
+            <a class="nav__link" href="{{route('dashboard')}}">
+                {{ __('Projet') }}
+            </a>
+        </li>
+    </ul>
 </nav>
 
 {{-- on garder le logout, on garde aussi la route vers le profile edit, on garde --}}

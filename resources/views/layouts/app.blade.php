@@ -15,18 +15,31 @@
 <!-- Page Content -->
 <h1 class="sro"> Dashboard </h1>
 <main class="app-layout">
-    <div class="app-layout__container">
-        <p class="app-layout__logo">jiri</p>
-        <p> menu </p>
+
+    <div class="app-layout__container menu">
+        <p class="menu__logo">jiri</p>
+        <p class="menu__title" > menu </p>
         @include('layouts.navigation')
+        <div class="menu__logout logout">
+            <form class="logout__form" method="POST" action="{{ route('logout') }}">
+                @csrf
+                <x-responsive-nav-link :href="route('logout')"
+                                       onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                    {{ __('Log Out') }}
+                </x-responsive-nav-link>
+            </form>
+            <!-- Authentication -->
+        </div>
     </div>
 
     <div class="app-layout__container">
-        <x-responsive-nav-link :href="route('profile.edit')">
-            {{ __('Profile') }}
-        </x-responsive-nav-link>
+        <div class="app-layout__profile" >
+            <p>{{ Auth::user()->name }}</p>
+        </div>
         {{ $slot }}
     </div>
+
 </main>
 </body>
 </html>

@@ -1,0 +1,53 @@
+@import "vars";
+
+.menu {
+    height: auto;
+    background-color: $nav-color;
+    padding-inline-start: 3rem;
+    padding-inline-end: 2rem;
+    padding-block-start: 4rem;
+    display: flex;
+    flex-direction: column;
+
+    &__logo {
+        @include h1;
+        margin-block-end: 3rem;
+    }
+
+    &__title {
+        margin-bottom: 2rem;
+        color: $menu-title-color;
+    }
+
+    &__logout {
+        justify-items: end;
+    }
+}
+
+.nav {
+    height: 100%;
+
+    &__link {
+        color: $primary-font-color;
+        text-decoration: none;
+    }
+
+    &__link:visited {
+        color: $primary-font-color;
+        text-decoration: none;
+    }
+
+    &__item {
+        padding-inline: 1rem;
+        padding-block: 0.5rem;
+        margin-bottom: 1rem;
+        &--active {
+            background-color: $menu-link-active-color;
+            border-radius: 10px;
+        }
+    }
+}
+
+.logout {
+    margin-block-end: 3rem;
+}
