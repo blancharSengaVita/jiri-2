@@ -1,0 +1,70 @@
+//FONTFACE
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato-Regular.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato-Medium.ttf') format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url('../fonts/Lato-Semibold.ttf') format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+//COLOR
+$background-color: #FFF9F3;
+$nav-color: #FFD7B1;
+$primary-app-color: #FF6100;
+$primary-app-color--lighten: #FFD7B1;
+$primary-font-color: Black;
+$secondary-font-color: White;
+
+//Spacer
+$xs-spacer: 4px;
+$s-spacer: 8px;
+$m-spacer: 16px;
+$l-spacer: 24px;
+$xl-spacer: 32px;
+$xxl-spacer: 40px;
+$xxxl-spacer: 48px;
+
+//VAR FOR MEDIA QUERIES
+$maxWidthPhone: 380px;
+$maxWidthLargePhone: 767px;
+$maxWidthLargeTablet: 1220px;
+$maxWidthLargeLaptop: 1800px;
+
+$breakpoints: (
+    'phone': (max-width: calc(30rem)), //480px
+    'large-phone': (min-width: calc(30rem + 1px)), //481px
+    'tablet': (min-width: calc(48rem - 1px)), // //767px
+    'large-tablet': (min-width: calc(60rem)), // //960px
+    'laptop': (min-width: 80rem), //1280px
+    'large-laptop': (min-width: 100rem), //1600px
+    'desktop': (min-width: 120rem) //1920px
+) !default;
+
+
+@mixin mq($breakpoint) {
+    // If the key exists in the map
+    @if map-has-key($breakpoints, $breakpoint) {
+        // Prints a media query based on the value
+        @media #{inspect(map-get($breakpoints, $breakpoint))} {
+            @content;
+        }
+    }
+        // If the key doesn't exist in the map
+    @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+    }
+}

@@ -1,13 +1,15 @@
+@import "../vars.scss";
+
 .app-layout {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: minmax(0, 250px) 1fr;
-    background-color: #FFF9F3;
+    background-color: $background-color;
 
 
     &__container:first-child {
         height:100% ;
-        background-color: #FFD7B1;
+        background-color: $nav-color;
     }
 }
