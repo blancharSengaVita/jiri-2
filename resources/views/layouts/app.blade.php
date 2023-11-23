@@ -14,7 +14,6 @@
 <body class="">
 <!-- Page Content -->
 <h1 class="sro"> Dashboard </h1>
-<h2 class="sro"> menu de navigation principale  </h2>
 <main class="app-layout">
     <div class="app-layout__container">
         <p class="app-layout__logo">jiri</p>
