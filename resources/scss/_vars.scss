@@ -1,4 +1,6 @@
 //FONTFACE
+
+
 @font-face {
     font-family: "Lato";
     src: url('../fonts/Lato-Regular.ttf') format("truetype");
@@ -37,6 +39,43 @@ $xl-spacer: 32px;
 $xxl-spacer: 40px;
 $xxxl-spacer: 48px;
 
+// FONT
+$regular: "Oxygen", sans-serif;
+@mixin font {
+    font-family : Lato, sans-serif;
+    font-weight: 400;
+}
+
+@mixin font-medium {
+    font-family : Lato, sans-serif;
+    font-weight: 500;
+}
+
+@mixin font-semiBold {
+    font-family : Lato, sans-serif;
+    font-weight: 600;
+}
+
+@mixin font-h1 {
+    @include font;
+    font-size: 1.625rem;
+}
+
+@mixin font-h2 {
+    @include font;
+    font-size: 1.25rem;
+}
+
+@mixin font-p {
+    @include font;
+    font-size: 1rem;
+}
+
+@mixin font-tinyText {
+    @include font;
+    font-size: 0.75rem;
+}
+
 //VAR FOR MEDIA QUERIES
 $maxWidthPhone: 380px;
 $maxWidthLargePhone: 767px;
@@ -68,3 +107,11 @@ $breakpoints: (
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
     }
 }
+
+Unit
+
+//LINE HEIGHT
+//MARGIN
+//ANCHOR
+//VERTICAL SPACER
+//TITLE (otherPage)
