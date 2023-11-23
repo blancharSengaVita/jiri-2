@@ -1,10 +1,12 @@
+@import "../vars";
+
 .guest-layout {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #FFF9F3;
+    background-color: $background-color;
 
     &__container {
         width: 100%;
@@ -14,7 +16,7 @@
     }
 
     &__container:first-child {
-        margin-block-end: 1.5rem;
+        margin-block-end: $l-spacer;
     }
 
     &__title {

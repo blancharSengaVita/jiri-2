@@ -1,6 +1,4 @@
-//FONTFACE
-
-
+// FONTFACE
 @font-face {
     font-family: "Lato";
     src: url('../fonts/Lato-Regular.ttf') format("truetype");
@@ -22,15 +20,15 @@
     font-style: normal;
 }
 
-//COLOR
+//  COLOR
 $background-color: #FFF9F3;
 $nav-color: #FFD7B1;
 $primary-app-color: #FF6100;
 $primary-app-color--lighten: #FFD7B1;
 $primary-font-color: Black;
-$secondary-font-color: White;
+$white-font-color: White;
 
-//Spacer
+//  SPACER
 $xs-spacer: 4px;
 $s-spacer: 8px;
 $m-spacer: 16px;
@@ -39,44 +37,53 @@ $xl-spacer: 32px;
 $xxl-spacer: 40px;
 $xxxl-spacer: 48px;
 
-// FONT
-$regular: "Oxygen", sans-serif;
+//  AUTRE
+$auth-form-max-width: 400px;
+$auth-form-background-color: white;
+$nav-width: 250px;
+
+//  FONT
 @mixin font {
     font-family : Lato, sans-serif;
     font-weight: 400;
 }
 
-@mixin font-medium {
+@mixin medium {
     font-family : Lato, sans-serif;
     font-weight: 500;
 }
 
-@mixin font-semiBold {
+@mixin semiBold {
     font-family : Lato, sans-serif;
     font-weight: 600;
 }
 
-@mixin font-h1 {
+@mixin h1 {
     @include font;
     font-size: 1.625rem;
 }
 
-@mixin font-h2 {
+@mixin h2 {
     @include font;
     font-size: 1.25rem;
 }
 
-@mixin font-p {
+@mixin p {
     @include font;
     font-size: 1rem;
 }
 
-@mixin font-tinyText {
+@mixin tinyText {
     @include font;
     font-size: 0.75rem;
 }
 
-//VAR FOR MEDIA QUERIES
+@mixin a {
+    text-decoration: underline;
+    color: #005CE7;
+}
+
+// VAR FOR MEDIA QUERIES
 $maxWidthPhone: 380px;
 $maxWidthLargePhone: 767px;
 $maxWidthLargeTablet: 1220px;
@@ -107,11 +114,3 @@ $breakpoints: (
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
     }
 }
-
-Unit
-
-//LINE HEIGHT
-//MARGIN
-//ANCHOR
-//VERTICAL SPACER
-//TITLE (otherPage)

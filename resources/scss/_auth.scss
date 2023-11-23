@@ -1,10 +1,12 @@
+@import "vars";
+
 .auth {
-    max-width: 400px;
+    max-width: $auth-form-max-width;
     width: 100%;
 
     &__container {
         &--button {
-            margin-block-end: 1rem;
+            margin-block-end: $m-spacer;
         }
 
         &--link {
