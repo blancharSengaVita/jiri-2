@@ -17,27 +17,24 @@
                 <input wire:model.live="jiriDate" id="jiriDate" name="jiriDate">
             </div>
 
+            <button x-on:click="isModalOpen = true">ajouter un contact</button>
+
+            <div
+                class="modal"
+                role="dialog"
+                tabindex="-1"
+                x-show="isModalOpen"
+{{--                x-on:click="isModalOpen = false"--}}
+                x-transition
+            >
+                <livewire:add-contact/>
+            </div>
+
             <button wire:click="save" type="submit">
-                Enregistrer les infos
+                Enregistrer le jury
             </button>
         </div>
 
 
-        {{-- Partie qui permet d'ajouter un contact au jury --}}
-        {{--        <button type="button" x-on:click="isModalOpen = true"> Ajouter des étudiants</button>--}}
-        {{--        <div class="modal"--}}
-        {{--             role="dialog"--}}
-        {{--             tabindex="-1"--}}
-        {{--             x-show="isModalOpen"--}}
-        {{--          mettre le    x-on:click.away="isModalOpen = false"--}}
-        {{--             x-cloak--}}
-        {{--             x-transition >--}}
-        {{--            <livewire:add-contact/>--}}
-        {{--            azerazerazer--}}
-        {{--        </div>--}}
-
-        <button type="submit">
-            Enregistrer le jury
-        </button>
     </form>
 </div>

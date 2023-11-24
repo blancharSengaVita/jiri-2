@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class CreateJiri extends Component
@@ -12,6 +13,7 @@ class CreateJiri extends Component
     //2.a S'il n'a pas de jury lui donner un id qui n'existe pas dans la db (genre 0 ou une valeur null)
     //3 faire un updaterOrCreate
     //
+
 
     public string $jiriId;
     public string $jiriName;
