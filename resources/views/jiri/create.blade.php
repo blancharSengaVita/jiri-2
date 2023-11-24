@@ -3,7 +3,14 @@
         {{ __('Création de Jiri') }}
     </x-slot:title>
 
-    <form method="post" action="/notes" enctype="multipart/form-data">
+    <form method="post"
+          action="/jiri"
+          enctype="multipart/form-data"
+          x-data="{'isModalOpen': false}"
+          x-on:submit.prevent="{'isModalOpen': true}"
+          x-on:keydown.escape="isModalOpen=false"
+          @click="console.log('isModalOpen')">
+
         <div class="field">
             <label for="jiriName"> le nom du jiri </label>
             <input id="jiriName" name="jiriName" >
@@ -14,9 +21,18 @@
             <input id="jiriDate" name="jiriDate" >
         </div>
 
-        <button> Ajouter des étudiants</button>
+        <button x-on:click="isModalOpen = true"> Ajouter des étudiants </button>
 
-        <button type="submit">
+        <div class="modal"
+             role="dialog"
+             tabindex="-1"
+             x-show="isModalOpen"
+             x-on:click.away="isModalOpen = false"
+             x-cloak
+             x-transition >
+        </div>
+
+        <button type="submit" >
             Enregistrer le jury
         </button>
     </form>
