@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomepageController::class, 'index']);
 
 Route::get('/jiri/create', [JiriController::class, 'create']);
+Route::post('/jiri', [JiriController::class, 'store']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

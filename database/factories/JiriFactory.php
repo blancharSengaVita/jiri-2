@@ -19,7 +19,7 @@ class JiriFactory extends Factory
         return [
             'name' => 'Jiri ' . $this->faker->word,
             'starting_at' => $this->faker->dateTimeBetween('-1 year', '+1 year'),
-            'duration' => $this->faker->numberBetween(120, 480),
+//            'duration' => $this->faker->numberBetween(120, 480),
         ];
     }
 }
