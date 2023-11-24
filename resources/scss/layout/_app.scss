@@ -7,10 +7,19 @@
     grid-template-columns: minmax(0, $nav-width) 1fr;
     background-color: $background-color;
 
-    &__profile {
-        display: flex;
-        justify-content: flex-end;
-        
+    &__container:last-child {
+        margin-inline: 2rem;
+        margin-block-start: 3rem;
     }
 }
 
+.profil {
+    display: flex;
+    justify-content: flex-end;
+    height: min-content;
+    &__card{
+        background-color: $secondary-background-color;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+}

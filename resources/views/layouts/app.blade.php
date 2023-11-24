@@ -34,8 +34,10 @@
     </div>
 
     <div class="app-layout__container">
-        <div class="app-layout__profile" >
-            <p>{{ Auth::user()->name }}</p>
+        <div class="profil" >
+            <div class="profil__card">
+                <p class="" >{{ Auth::user()->name }}</p>
+            </div>
         </div>
         {{ $slot }}
     </div>
