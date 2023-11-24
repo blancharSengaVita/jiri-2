@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -15,7 +16,7 @@ class CreateJiri extends Component
     //
 
 
-    public string $jiriId;
+    public int $jiriId;
     public string $jiriName;
     public string $jiriDate;
 
@@ -43,6 +44,10 @@ class CreateJiri extends Component
         ])->id;
     }
 
+    #[Computed]
+    public function thisJiriId(): int{
+        return $this->jiriId;
+    }
 
     public function render()
     {

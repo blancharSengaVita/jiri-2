@@ -10,6 +10,11 @@ class Attendance extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'role',
+        'email',
+    ];
+
     public function jiri(): BelongsTo
     {
         return $this

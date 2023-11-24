@@ -24,4 +24,6 @@
                 <?php $id++ ?>
         @endforeach
     </ul>
+
+    <button wire:click="save" > enregistrer </button>
 </div>

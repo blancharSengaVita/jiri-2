@@ -27,7 +27,8 @@
 {{--                x-on:click="isModalOpen = false"--}}
                 x-transition
             >
-                <livewire:add-contact/>
+{{--                @dd($this->thisJiriId)--}}
+                <livewire:add-contact :thisJiriId="$this->thisJiriId" />
             </div>
 
             <button wire:click="save" type="submit">
