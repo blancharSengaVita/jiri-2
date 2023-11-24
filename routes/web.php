@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\jiriController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index']);
 
+Route::get('/jiri/create', [JiriController::class, 'create']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
