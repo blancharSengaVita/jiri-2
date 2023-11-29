@@ -18,10 +18,16 @@ class AddContact extends Component
     public string $id;
     public int $jiriId;
 
-    public function mount($thisJiriId){
+    public function mount($thisJiriId): void
+    {
         $this->search = '';
         $this->contactsToAddToJiri = new Collection();
         $this->id = 1;
+        $this->jiriId = $thisJiriId;
+    }
+
+    public function update($thisJiriId): void
+    {
         $this->jiriId = $thisJiriId;
     }
 
@@ -50,7 +56,7 @@ class AddContact extends Component
             DB::table('attendances')->insert([
                 'role' => 'student',
                 'contact_id' => $contact->id,
-                'jiri_id' => 1,
+                'jiri_id' => $this->jiriId,
             ]);
 //            lié le $contact au jury qu'on est en train de créer
         }
