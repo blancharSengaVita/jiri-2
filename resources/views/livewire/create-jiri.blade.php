@@ -9,7 +9,7 @@
         <div>
             <div  class="field">
                 <label for="jiriName"> le nom du jiri </label>
-                <input  wire:model.live="jiriName" id="jiriName" name="jiriName">
+                <input wire:model.live="jiriName" id="jiriName" name="jiriName">
             </div>
 
             <div class="field">
@@ -31,7 +31,7 @@
                 <livewire:add-contact :thisJiriId="$this->thisJiriId" />
             </div>
 
-            <button wire:click="save" type="submit">
+            <button type="submit">
                 Enregistrer le jury
             </button>
         </div>

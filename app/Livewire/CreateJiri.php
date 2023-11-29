@@ -16,6 +16,7 @@ class CreateJiri extends Component
     //
 
 
+    //AJOUTER UN REQUIRE AU NOM AU MOINS
     public int $jiriId;
     public string $jiriName;
     public string $jiriDate;
