@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('jiris', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('starting_at')->default(null);
+            $table->string('starting_at')->nullable();
             $table->timestamps();
         });
     }

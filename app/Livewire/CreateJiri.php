@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -14,7 +15,6 @@ class CreateJiri extends Component
     //2.a S'il n'a pas de jury lui donner un id qui n'existe pas dans la db (genre 0 ou une valeur null)
     //3 faire un updaterOrCreate
     //
-
 
     //AJOUTER UN REQUIRE AU NOM AU MOINS
     public int $jiriId;
@@ -39,15 +39,18 @@ class CreateJiri extends Component
     public function save(): void
     {
         $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId],
-        [
-            'name' => $this->jiriName,
-            'starting_at' => $this->jiriDate,
-        ])->id;
+            [
+                'name' => $this->jiriName,
+                'starting_at' => $this->jiriDate,
+            ])->id;
     }
 
-        public function changeThisArray($array): void
+    #[computed]
+    public function changeThisArray($field = [])
     {
-        $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $array)->id;
+        if ($field) {
+            return $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $field)->id;
+        }
     }
 
     public function updatedJiriName(): void
@@ -55,18 +58,13 @@ class CreateJiri extends Component
         $this->changeThisArray(['name' => $this->jiriName]);
     }
 
-    public function updatingJiriDate(): void
+    public function updatedJiriDate(): void
     {
         $this->changeThisArray(['starting_at' => $this->jiriDate]);
     }
 
-    #[Computed]
-    public function thisJiriId(): int{
-        return $this->jiriId;
-    }
-
     public function render()
     {
-        return view('livewire.create-jiri');
+        return view('livewire.create-jiri',['jiriId', $this->changeThisArray()]);
     }
 }

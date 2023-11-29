@@ -7,7 +7,7 @@
           wire:click.prevent="save"
     >
         <div>
-            <div  class="field">
+            <div class="field">
                 <label for="jiriName"> le nom du jiri </label>
                 <input wire:model.live="jiriName" id="jiriName" name="jiriName">
             </div>
@@ -24,18 +24,17 @@
                 role="dialog"
                 tabindex="-1"
                 x-show="isModalOpen"
-{{--                x-on:click="isModalOpen = false"--}}
+                {{--                x-on:click="isModalOpen = false"--}}
                 x-transition
             >
-{{--                @dd($this->thisJiriId)--}}
-                <livewire:add-contact :thisJiriId="$this->thisJiriId" />
+{{--                @dd($jiriId);--}}
+                <livewire:add-contact :jiriId="$jiriId"  />
             </div>
 
             <button type="submit">
                 Enregistrer le jury
             </button>
         </div>
-
 
     </form>
 </div>

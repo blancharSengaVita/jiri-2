@@ -17,10 +17,10 @@ class jiriController extends Controller
 
     public function store(StoreJiriRequest $request)
     {
-//        Auth::user()->jiris()
-//            ->save(new Jiri((array)$request
-//        ));
-//        return to_route('jiri.create');
+        Auth::user()->jiris()
+            ->save(new Jiri((array)$request
+        ));
+        return to_route('jiri.create');
     }
 
     public function edit(){

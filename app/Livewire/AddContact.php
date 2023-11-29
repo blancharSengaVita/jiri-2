@@ -5,8 +5,10 @@ namespace App\Livewire;
 use App\Models\Attendance;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
@@ -16,20 +18,16 @@ class AddContact extends Component
     public string $search;
     public Collection $contactsToAddToJiri;
     public string $id;
+    #[Reactive]
     public int $jiriId;
 
-    public function mount($thisJiriId): void
+    public function mount(): void
     {
         $this->search = '';
         $this->contactsToAddToJiri = new Collection();
         $this->id = 1;
-        $this->jiriId = $thisJiriId;
     }
 
-    public function update($thisJiriId): void
-    {
-        $this->jiriId = $thisJiriId;
-    }
 
     #[Computed]
     public function filteredContacts(): Collection
@@ -42,23 +40,34 @@ class AddContact extends Component
 
     public function addContactToContactsToAddToJiri(Contact $contact)
     {
-        if (!$this->contactsToAddToJiri->contains($contact)){
-            $this->contactsToAddToJiri->put($contact->id,$contact);
+        if (!$this->contactsToAddToJiri->contains($contact)) {
+            $this->contactsToAddToJiri->put($contact->id, $contact);
         } else {
             $reducedContacts = $this->contactsToAddToJiri->filter(fn($c) => $contact->isNot($c));
             $this->contactsToAddToJiri = $reducedContacts;
         }
     }
 
-    public function save(){
-        foreach ($this->contactsToAddToJiri as $contact){
+    public function save()
+    {
+        foreach ($this->contactsToAddToJiri as $contact)
+        {
+            //j'ai une erreur avec cette methode c'est bien parce que
+//            Auth::user()->attendances()->updateOrCreate([
+//                'jiri_id' => $this->jiriId,
+//                'contact_id' => $contact->id
+//            ],
+//                [
+//                    'role' => 'student'
+//                ]);
 
-            DB::table('attendances')->insert([
-                'role' => 'student',
-                'contact_id' => $contact->id,
+            DB::table('attendances')->updateOrInsert([
                 'jiri_id' => $this->jiriId,
-            ]);
-//            lié le $contact au jury qu'on est en train de créer
+                'contact_id' => $contact->id
+            ],
+                [
+                    'role' => 'student'
+                ]);
         }
     }
 

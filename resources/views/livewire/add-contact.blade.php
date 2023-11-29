@@ -25,5 +25,5 @@
         @endforeach
     </ul>
 
-    <button wire:click="save" > enregistrer </button>
+    <button wire:click="save"> enregistrer </button>
 </div>
