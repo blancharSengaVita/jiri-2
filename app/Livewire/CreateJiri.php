@@ -45,6 +45,21 @@ class CreateJiri extends Component
         ])->id;
     }
 
+        public function changeThisArray($array): void
+    {
+        $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $array)->id;
+    }
+
+    public function updatedJiriName(): void
+    {
+        $this->changeThisArray(['name' => $this->jiriName]);
+    }
+
+    public function updatingJiriDate(): void
+    {
+        $this->changeThisArray(['starting_at' => $this->jiriDate]);
+    }
+
     #[Computed]
     public function thisJiriId(): int{
         return $this->jiriId;
