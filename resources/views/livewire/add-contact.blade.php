@@ -1,29 +1,33 @@
 <div>
-
     <input wire:model.live="search" type="search">
     <h2> Not selected </h2>
     <ul>
         @foreach($this->filteredContacts as $contact)
             <li wire:key="{{$contact->id}}">
-                <label dusk="notSelectedContact-{{ $contact->id }}" for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
-                <input wire:click="addContactToContactsToAddToJiri({{ $contact }})" value="{{ $contact->name }}" type="checkbox" id="contact-{{ $contact->id }}">
+                <label for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
+                <input
+                    wire:click="addContactToContactsToAddToJiri({{ $contact }})"
+                    value="{{ $contact->name }}"
+                    type="checkbox"
+                    id="contact-{{ $contact->id }}">
             </li>
         @endforeach
     </ul>
-
 
     <h2> Selected </h2>
-    <ul dusk="@selectedList">
+    <ul>
         @foreach($contactsToAddToJiri as $contact)
-            <li  wire:key="{{$contact->id}}">
-                <label dusk="selectedContact-{{ $contact->id }}" class=" nombre-{{ $id }}" for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
+            <li wire:key="{{$contact->id}}">
+                <label
+                    for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
                 <input
+                    wire:click="addContactToContactsToAddToJiri({{ $contact }})"
                     value="{{ $contact->name }}"
-                    type="checkbox" id="selectedContact-{{ $contact->id }}">
+                    type="checkbox"
+                    id="selectedContact-{{ $contact->id }}">
             </li>
-                <?php $id++ ?>
         @endforeach
     </ul>
 
-    <button wire:click="save"> enregistrer </button>
+    <button wire:click="save"> enregistrer</button>
 </div>
