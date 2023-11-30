@@ -24,15 +24,19 @@
                 role="dialog"
                 tabindex="-1"
                 x-show="isModalOpen"
-                @click.away="isModalOpen = false"
+
                 x-transition
             >
-                <div>
+                <div
+{{--                    @click.away="isModalOpen = false"--}}
+                >
 
                     {{--                @dd($jiriId);--}}
                     <livewire:add-contact :jiriId="$jiriId"/>
                 </div>
             </div>
+
+            <livewire:show-contact :jiriId="$jiriId"/>
 
             <button type="submit">
                 Enregistrer le jury
