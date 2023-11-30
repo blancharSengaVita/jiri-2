@@ -24,11 +24,14 @@
                 role="dialog"
                 tabindex="-1"
                 x-show="isModalOpen"
-                {{--                x-on:click="isModalOpen = false"--}}
+                @click.away="isModalOpen = false"
                 x-transition
             >
-{{--                @dd($jiriId);--}}
-                <livewire:add-contact :jiriId="$jiriId"  />
+                <div>
+
+                    {{--                @dd($jiriId);--}}
+                    <livewire:add-contact :jiriId="$jiriId"/>
+                </div>
             </div>
 
             <button type="submit">
