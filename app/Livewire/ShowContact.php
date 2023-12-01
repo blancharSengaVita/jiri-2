@@ -40,6 +40,6 @@ class ShowContact extends Component
 
     public function render()
     {
-        return view('livewire.show-contact', ['students' => $this->conctatAddedToJiri]);
+        return view('livewire.show-contact', ['contacts' => $this->conctatAddedToJiri]);
     }
 }

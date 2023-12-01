@@ -1,9 +1,9 @@
 <div>
     <ul>
-        @foreach($students as $student)
+        @foreach($contacts as $contact)
             <li>
                 <p>
-                    {{ $student->name }}
+                    {{ $contact->name }}
                 </p>
             </li>
         @endforeach
