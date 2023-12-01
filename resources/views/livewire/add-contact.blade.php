@@ -29,5 +29,5 @@
         @endforeach
     </ul>
 
-    <button wire:click="save" x-on:click="isModalOpen = false"> enregistrer</button>
+    <button wire:click="save" x-on:click="{{ $modal }} = false"> enregistrer</button>
 </div>

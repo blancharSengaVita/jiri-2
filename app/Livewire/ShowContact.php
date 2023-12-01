@@ -14,16 +14,17 @@ class ShowContact extends Component
     #[Reactive]
     public int $jiriId;
     public Collection $contacts;
+    public string $role;
 
-    public function mount(){
-        $this->contacts = new Collection();
+    public function mount($role){
+        $this->role = $role;
     }
 
     #[computed]
     public function conctatAddedToJiri(){
         $this->contacts = new Collection();
         $attendancesOfJiri = DB::table('attendances')->where('jiri_id', '=', $this->jiriId)
-            ->where('role', '=', 'student')
+            ->where('role', '=', $this->role)
             ->get();
 
         foreach ($attendancesOfJiri as $attendance) {

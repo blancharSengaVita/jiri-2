@@ -19,11 +19,16 @@ class AddContact extends Component
     public Collection $contactsToAddToJiri;
     #[Reactive]
     public int $jiriId;
+    public string $role;
+    public string $modal;
 
-    public function mount(): void
+
+    public function mount($role, $modal): void
     {
+        $this->role = $role;
         $this->search = '';
         $this->contactsToAddToJiri = new Collection();
+        $this->modal = $modal;
     }
 
     #[Computed]
@@ -45,7 +50,7 @@ class AddContact extends Component
                 'contact_id' => $contact->id
             ],
                 [
-                    'role' => 'student'
+                    'role' => $this->role
                 ]);
 
         } else {
@@ -77,7 +82,7 @@ class AddContact extends Component
                 'contact_id' => $contact->id
             ],
                 [
-                    'role' => 'student'
+                    'role' => $this->role
                 ]);
         }
     }
@@ -85,6 +90,6 @@ class AddContact extends Component
 
     public function render()
     {
-        return view('livewire.add-contact');
+        return view('livewire.add-contact', ['modal'=>$this->modal]);
     }
 }
