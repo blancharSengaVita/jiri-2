@@ -3,7 +3,6 @@
 namespace Tests\Browser;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -16,7 +15,7 @@ class LoginTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $user = User::factory()->create([
-                'password' => 'change__this'
+                'password' => 'change__this',
             ]);
 
             $browser->visit('/login')

@@ -1,3 +1,3 @@
-<a>
+<button type="submit">
     {{ $slot }}
-</a>
+</button>

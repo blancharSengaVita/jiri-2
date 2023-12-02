@@ -4,7 +4,8 @@
     position: absolute;
     overflow: hidden;
     clip: rect(0 0 0 0);
-    height: 1px; width: 1px;
+    height: 1px;
+    width: 1px;
     margin: -1px;
     padding: 0;
     border: 0;
@@ -24,6 +25,12 @@
 
 .title {
     &--1 {
-        @include h1
+        @include h1;
+        margin-block-end: 1.5rem;
+    }
+
+    &--2 {
+        @include h2;
+        margin-block-end: 1rem;
     }
 }

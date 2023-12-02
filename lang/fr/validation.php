@@ -186,7 +186,7 @@ return [
     */
 
     'attributes' => [
-        'password' => 'mot de passe'
+        'password' => 'mot de passe',
     ],
 
 ];

@@ -17,6 +17,7 @@
     display: flex;
     justify-content: flex-end;
     height: min-content;
+    margin-block-end: 2rem;
     &__card{
         background-color: $secondary-background-color;
         padding: 1rem;

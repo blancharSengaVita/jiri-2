@@ -1,4 +1,5 @@
 <?php
+
 return [
     'Email' => 'Email',
     'Password' => 'Mot de passe',

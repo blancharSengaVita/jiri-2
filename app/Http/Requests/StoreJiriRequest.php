@@ -6,13 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJiriRequest extends FormRequest
 {
-	public function rules(): array
-	{
-		return [ 'name' => 'required'];
-	}
+    public function rules(): array
+    {
+        return ['name' => 'required'];
+    }
 
-	public function authorize(): bool
-	{
-		return true;
-	}
+    public function authorize(): bool
+    {
+        return true;
+    }
 }

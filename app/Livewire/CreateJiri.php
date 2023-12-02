@@ -2,11 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Reactive;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class CreateJiri extends Component
@@ -18,7 +15,9 @@ class CreateJiri extends Component
 
     //AJOUTER UN REQUIRE AU NOM AU MOINS
     public int $jiriId;
+
     public string $jiriName;
+
     public string $jiriDate;
 
     public function mount($jiriId = 0): void
@@ -65,6 +64,6 @@ class CreateJiri extends Component
 
     public function render()
     {
-        return view('livewire.create-jiri',['jiriId', $this->changeThisArray()]);
+        return view('livewire.create-jiri', ['jiriId', $this->changeThisArray()]);
     }
 }

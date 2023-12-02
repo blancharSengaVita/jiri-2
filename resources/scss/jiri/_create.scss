@@ -1,0 +1,20 @@
+@import "../vars";
+
+.create-jiri {
+    &__form {
+
+    }
+
+    &__fieldset {
+        @include fieldsetBackground;
+        margin-block-end:3rem;
+    }
+
+    &__field {
+        @include field
+    }
+
+    &__field:last-child {
+        margin-block: 0;
+    }
+}

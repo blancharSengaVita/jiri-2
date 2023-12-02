@@ -16,12 +16,15 @@ class AddContact extends Component
 {
     #[Url]
     public string $search;
+
     public Collection $contactsToAddToJiri;
+
     #[Reactive]
     public int $jiriId;
-    public string $role;
-    public string $modal;
 
+    public string $role;
+
+    public string $modal;
 
     public function mount($role, $modal): void
     {
@@ -34,7 +37,7 @@ class AddContact extends Component
     #[Computed]
     public function filteredContacts(): Collection
     {
-        $contacts = Contact::where('name', 'like', '%' . $this->search . '%')
+        $contacts = Contact::where('name', 'like', '%'.$this->search.'%')
             ->get();
 
         return $contacts;
@@ -42,54 +45,52 @@ class AddContact extends Component
 
     public function addContactToContactsToAddToJiri(Contact $contact): void
     {
-        if (!$this->contactsToAddToJiri->contains($contact)) {
+        if (! $this->contactsToAddToJiri->contains($contact)) {
             $this->contactsToAddToJiri->put($contact->id, $contact);
 
-            DB::table('attendances')->updateOrInsert([
+            Attendance::updateOrInsert([
                 'jiri_id' => $this->jiriId,
-                'contact_id' => $contact->id
+                'contact_id' => $contact->id,
             ],
                 [
-                    'role' => $this->role
+                    'role' => $this->role,
                 ]);
 
         } else {
-            $reducedContacts = $this->contactsToAddToJiri->filter(fn($c) => $contact->isNot($c));
+            $reducedContacts = $this->contactsToAddToJiri->filter(fn ($c) => $contact->isNot($c));
             $this->contactsToAddToJiri = $reducedContacts;
 
-            DB::table('attendances')
-                ->where('jiri_id', '=', $this->jiriId)
+
+            Attendance::where('jiri_id', '=', $this->jiriId)
                 ->where('contact_id', '=', $contact->id)
                 ->delete();
         }
     }
 
-
     public function save()
     {
         foreach ($this->contactsToAddToJiri as $contact) {
             //j'ai une erreur avec cette methode c'est bien parce que
-//            Auth::user()->attendances()->updateOrCreate([
-//                'jiri_id' => $this->jiriId,
-//                'contact_id' => $contact->id
-//            ],
-//                [
-//                    'role' => 'student'
-//                ]);
+            //            Auth::user()->attendances()->updateOrCreate([
+            //                'jiri_id' => $this->jiriId,
+            //                'contact_id' => $contact->id
+            //            ],
+            //                [
+            //                    'role' => 'student'
+            //                ]);
 
             DB::table('attendances')->updateOrInsert([
                 'jiri_id' => $this->jiriId,
-                'contact_id' => $contact->id
+                'contact_id' => $contact->id,
             ],
                 [
-                    'role' => $this->role
+                    'role' => $this->role,
                 ]);
         }
     }
 
-
     public function render()
     {
-        return view('livewire.add-contact', ['modal'=>$this->modal]);
+        return view('livewire.add-contact', ['modal' => $this->modal]);
     }
 }
