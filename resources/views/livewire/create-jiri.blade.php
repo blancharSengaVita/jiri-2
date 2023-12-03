@@ -104,7 +104,7 @@
             />
         </fieldset>
 
-        <button type="submit">
+        <button wire:click.prevent="save" type="submit">
             Enregistrer le jury
         </button>
 

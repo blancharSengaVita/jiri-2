@@ -44,26 +44,26 @@ class CreateJiri extends Component
             ])->id;
     }
 
-    #[computed]
-    public function changeThisArray($field = [])
-    {
-        if ($field) {
-            return $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $field)->id;
-        }
-    }
-
-    public function updatedJiriName(): void
-    {
-        $this->changeThisArray(['name' => $this->jiriName]);
-    }
-
-    public function updatedJiriDate(): void
-    {
-        $this->changeThisArray(['starting_at' => $this->jiriDate]);
-    }
+//    #[computed]
+//    public function changeThisArray($field = [])
+//    {
+//        if ($field) {
+//            return $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $field)->id;
+//        }
+//    }
+//
+//    public function updatedJiriName(): void
+//    {
+//        $this->changeThisArray(['name' => $this->jiriName]);
+//    }
+//
+//    public function updatedJiriDate(): void
+//    {
+//        $this->changeThisArray(['starting_at' => $this->jiriDate]);
+//    }
 
     public function render()
     {
-        return view('livewire.create-jiri', ['jiriId', $this->changeThisArray()]);
+        return view('livewire.create-jiri');
     }
 }
