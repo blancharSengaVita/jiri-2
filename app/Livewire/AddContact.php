@@ -38,26 +38,12 @@ class AddContact extends Component
     #[Computed]
     public function filteredContacts(): Collection
     {
-
-//         Contact::
-//        where('name', 'like', '%' . $this->search . '%')
-//            ->where('user_id', '=', Auth::user()->id)
-//            ->get();
-
-//        $contactsNotAvailable = Attendance::where('jiri_id', '=', $this->jiriId);
-//            ->where(cont)
-//            ->get();
-
-        //Je voudrais faire une query ou je demande de ne pas prendre les lignes avec un id qui se trouvent en tant que clé étrangers sur une autre table
-
-        $contacts = Contact::where('name', 'like', '%'.$this->search.'%')
+        return Contact::where('name', 'like', '%'.$this->search.'%')
             ->where('user_id', Auth::user()->id)
             ->whereDoesntHave('attendances', function($query){
                 $query->where('jiri_id', $this->jiriId);
             })
             ->get();
-
-        return $contacts;
     }
 
     public function addContactToContactsToAddToJiri(Contact $contact): void

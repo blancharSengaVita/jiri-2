@@ -4,7 +4,10 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Symfony\Contracts\Service\Attribute\Required;
 
 class CreateJiri extends Component
 {
@@ -16,6 +19,7 @@ class CreateJiri extends Component
     //AJOUTER UN REQUIRE AU NOM AU MOINS
     public int $jiriId;
 
+    #[Validate('required|min:3', message: 'Yo, add a title' )]
     public string $jiriName;
 
     public string $jiriDate;
@@ -35,13 +39,16 @@ class CreateJiri extends Component
         }
     }
 
+
     public function save(): void
     {
+        $this->validate();
         $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId],
             [
                 'name' => $this->jiriName,
                 'starting_at' => $this->jiriDate,
             ])->id;
+
     }
 
 //    #[computed]

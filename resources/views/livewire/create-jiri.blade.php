@@ -23,12 +23,13 @@
         <fieldset class="create-jiri__fieldset">
             <div class="create-jiri__field">
                     <label for="jiriName"> {{ __('Le nom du jiri') }} </label>
-                    <input type="text" wire:model.live="jiriName" id="jiriName" name="jiriName">
+                    <input type="text" wire:model.blur="jiriName" id="jiriName" name="jiriName">
+                <div>@error('jiriName') {{ $message }} @enderror</div>
             </div>
 
             <div class="create-jiri__field">
                 <label for="jiriDate"> {{ __('La date du Jiri') }} </label>
-                <input type="text" wire:model.live="jiriDate" id="jiriDate" name="jiriDate">
+                <input type="text" wire:model="jiriDate" id="jiriDate" name="jiriDate">
             </div>
         </fieldset>
 
@@ -37,7 +38,9 @@
             {{ __('Étudiants ajoutés au jiri')  }}
         </p>
         <fieldset class="create-jiri__fieldset" x-on:click.outside="isStudentModalOpen=false">
-            <button x-on:click="isStudentModalOpen = true">ajouter un contact</button>
+            <button x-on:click="isStudentModalOpen = true">ajouter un Étudiant</button>
+            <div>@error('jiriName') {{ $message }} @enderror</div>
+            @if(!$errors->any())
             <div
                 class="modal"
                 role="dialog"
@@ -55,6 +58,7 @@
                 :role="'student'"
                 :jiriId="$jiriId"
             />
+            @endif
         </fieldset>
 
         <h2 class="sro">  {{ __('Évaluateurs ajoutés au jiri')  }} </h2>
@@ -62,7 +66,8 @@
             {{ __('Évaluateurs ajoutés au jiri')  }}
         </p>
         <fieldset class="create-jiri__fieldset" x-on:click.outside="isEvaluatorModalOpen=false">
-            <button x-on:click="isEvaluatorModalOpen = true">ajouter un étudiant</button>
+            <button wire:click="assertThatJiriNameIsValidate()" x-on:click="isEvaluatorModalOpen = true">ajouter un Évaluateur </button>
+
             <div
                 class="modal"
                 role="dialog"
@@ -104,7 +109,7 @@
             />
         </fieldset>
 
-        <button wire:click.prevent="save" type="submit">
+        <button type="submit">
             Enregistrer le jury
         </button>
 
