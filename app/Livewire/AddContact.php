@@ -39,10 +39,10 @@ class AddContact extends Component
     public function filteredContacts(): Collection
     {
 
-        $contacts = Contact::
-        where('name', 'like', '%' . $this->search . '%')
-            ->where('user_id', '=', Auth::user()->id)
-            ->get();
+//         Contact::
+//        where('name', 'like', '%' . $this->search . '%')
+//            ->where('user_id', '=', Auth::user()->id)
+//            ->get();
 
 //        $contactsNotAvailable = Attendance::where('jiri_id', '=', $this->jiriId);
 //            ->where(cont)
@@ -50,9 +50,11 @@ class AddContact extends Component
 
         //Je voudrais faire une query ou je demande de ne pas prendre les lignes avec un id qui se trouvent en tant que clé étrangers sur une autre table
 
-        Contact::where('name', 'like', '%'.$this->seach.'%')
+        $contacts = Contact::where('name', 'like', '%'.$this->search.'%')
             ->where('user_id', Auth::user()->id)
-            ->whereDoesntHave('attendances')
+            ->whereDoesntHave('attendances', function($query){
+                $query->where('jiri_id', $this->jiriId);
+            })
             ->get();
 
         return $contacts;

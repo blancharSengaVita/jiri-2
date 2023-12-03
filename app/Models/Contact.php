@@ -42,4 +42,10 @@ class Contact extends Model
         return $this
             ->HasMany(Implementation::class);
     }
+
+    public function attendances(): HasMany
+    {
+        return $this
+            ->HasMany(Attendance::class);
+    }
 }
