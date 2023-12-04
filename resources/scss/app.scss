@@ -11,8 +11,13 @@
 //layout
 @import "layout/guest.scss";
 @import "layout/app.scss";
+
+//Auth
 @import "auth/login.scss";
+
+//Jiri
 @import "jiri/create.scss";
+@import "jiri/index.scss";
 
 
 @import "auth.scss";

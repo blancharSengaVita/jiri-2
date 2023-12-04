@@ -2,11 +2,10 @@
 
 .create-jiri {
     &__form {
-
     }
 
     &__fieldset {
-        @include fieldsetBackground;
+        @include cardBackground;
         margin-block-end:3rem;
     }
 
