@@ -5,30 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreJiriRequest;
 use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class jiriController extends Controller
 {
+    public function index()
+    {
+
+        $user = Auth::user();
+        $user->load('jiris');
+        return view('jiri.index', compact('user'));
+    }
+
     public function create()
     {
         return view('jiri.create');
     }
 
-    public function store(StoreJiriRequest $request)
+    public function show(Jiri $jiri)
     {
-        Auth::user()->jiris()
-            ->save(new Jiri((array) $request
-            ));
-
-        return to_route('jiri.create');
+        return view('jiri.show', compact('jiri'));
     }
 
-    public function edit()
+
+    public function destroy(Jiri $jiri)
     {
-
-    }
-
-    public function update()
-    {
-
+        if (!Gate::allows('handle-note', $jiri)) {
+            abort(403);
+        }
+        $jiri->delete();
+        return redirect('/jiries');
     }
 }
