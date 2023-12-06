@@ -11,7 +11,6 @@ class jiriController extends Controller
 {
     public function index()
     {
-
         $user = Auth::user();
         $user->load('jiris');
         return view('jiri.index', compact('user'));

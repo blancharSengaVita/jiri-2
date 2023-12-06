@@ -33,6 +33,7 @@ class AddContact extends Component
     #[Computed]
     public function filteredContacts(): Collection
     {
+        info($this->role);
         return Contact::where('name', 'like', '%' . $this->search . '%')
             ->where('user_id', Auth::user()->id)
             ->whereDoesntHave('attendances', function ($query) {
@@ -43,7 +44,6 @@ class AddContact extends Component
 
     public function addToJiri(Contact $contact): void
     {
-        info($this->role);
         Attendance::updateOrInsert([
             'jiri_id' => $this->jiriId,
             'contact_id' => $contact->id,

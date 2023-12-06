@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\jiriController;
 use App\Http\Controllers\ProfileController;
@@ -31,11 +32,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/jiries', [JiriController::class, 'index']);
     Route::get('/jiries/create', [JiriController::class, 'create']);
-//    Route::post('/jiries', [JiriController::class, 'store']);
     Route::get('/jiries/{jiri}', [JiriController::class, 'show']);
-//    Route::get('/jiries/{jiri}/edit', [JiriController::class, 'edit']);
-//    Route::patch('/jiries/{jiri}', [JiriController::class, 'update']);
     Route::delete('/jiries/{jiri}', [JiriController::class, 'destroy']);
+
+    Route::get('/contacts', [ContactController::class, 'index']);
+    Route::get('/contacts/create', [ContactController::class, 'create']);
+    Route::get('/contacts/{jiri}', [ContactController::class, 'show']);
+    Route::delete('/contacts/{jiri}', [ContactController::class, 'destroy']);
+
+
 });
 
 require __DIR__.'/auth.php';
