@@ -4,30 +4,33 @@
     <ul>
         @foreach($this->filteredContacts as $contact)
             <li wire:key="{{$contact->id}}">
-                <label for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
-                <input
-                    wire:click="addContactToContactsToAddToJiri({{ $contact }})"
-                    value="{{ $contact->name }}"
-                    type="checkbox"
-                    id="contact-{{ $contact->id }}">
+                <label for="contact-{{ $contact->id }}">{{ $contact->name }}
+                    <input
+                        wire:click="addToJiri({{ $contact }})"
+                        value="{{ $contact->name }}"
+                        type="checkbox"
+                        id="contact-{{ $contact->id }}">
+                </label>
             </li>
         @endforeach
     </ul>
 
     <h2> Selected </h2>
     <ul>
-        @foreach($contactsToAddToJiri as $contact)
+        @foreach($this->addedTojury as $contact)
             <li wire:key="{{$contact->id}}">
                 <label
-                    for="contact-{{ $contact->id }}">{{ $contact->name }}</label>
-                <input
-                    wire:click="addContactToContactsToAddToJiri({{ $contact }})"
-                    value="{{ $contact->name }}"
-                    type="checkbox"
-                    id="selectedContact-{{ $contact->id }}">
+                    for="contact-{{ $contact->id }}">{{ $contact->name }}
+                    <input
+                        wire:click="removeToJiri({{ $contact }})"
+                        value="{{ $contact->name }}"
+                        type="checkbox"
+                        id="selectedContact-{{ $contact->id }}">
+                </label>
+
             </li>
         @endforeach
     </ul>
 
-    <button wire:click="save" x-on:click="{{ $modal }} = false"> enregistrer</button>
+    <button x-on:click="{{ $modal }} = false"> enregistrer</button>
 </div>

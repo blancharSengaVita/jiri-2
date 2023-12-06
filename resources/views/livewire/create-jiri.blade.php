@@ -14,7 +14,7 @@
           isEvaluatorModalOpen = false,
           'isProjectModalOpen': false,
           "
-          wire:click.prevent="save"
+          wire:submit.prevent="save"
     >
         <h2 class="sro">  {{ __('information du jury')  }} </h2>
         <p class="title--2">
@@ -23,7 +23,7 @@
         <fieldset class="create-jiri__fieldset">
             <div class="create-jiri__field">
                     <label for="jiriName"> {{ __('Le nom du jiri') }} </label>
-                    <input type="text" wire:model.blur="jiriName" id="jiriName" name="jiriName">
+                    <input type="text" wire:model="jiriName" id="jiriName" name="jiriName">
                 <div>@error('jiriName') {{ $message }} @enderror</div>
             </div>
 
@@ -66,7 +66,7 @@
             {{ __('Évaluateurs ajoutés au jiri')  }}
         </p>
         <fieldset class="create-jiri__fieldset" x-on:click.outside="isEvaluatorModalOpen=false">
-            <button wire:click="assertThatJiriNameIsValidate()" x-on:click="isEvaluatorModalOpen = true">ajouter un Évaluateur </button>
+            <button x-on:click="isEvaluatorModalOpen = true">ajouter un Évaluateur </button>
 
             <div
                 class="modal"
@@ -81,28 +81,6 @@
                     :modal="'isEvaluatorModalOpen'"
                 />
             </div>
-            <livewire:show-contact
-                :jiriId="$jiriId"
-                :role="'evaluator'"
-            />
-        </fieldset>
-
-        <h2 class="sro">  {{ __('Projets ajoutés au jiri')  }} </h2>
-        <p class="title--2">
-            {{ __('Projets ajoutés au jiri')  }}
-        </p>
-        <fieldset class="create-jiri__fieldset" x-on:click.outside="isProjectModalOpen=false">
-            <button x-on:click="isProjectModalOpen = true">ajouter un contact</button>
-            <div
-                class="modal"
-                role="dialog"
-                tabindex="-1"
-                x-show="isProjectModalOpen"
-                x-transition
-            >
-                <livewire:add-project/>
-            </div>
-
             <livewire:show-contact
                 :jiriId="$jiriId"
                 :role="'evaluator'"
