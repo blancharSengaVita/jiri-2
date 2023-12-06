@@ -7,6 +7,5 @@
                 </p>
             </li>
         @endforeach
-        <p>azerazer</p>
     </ul>
 </div>

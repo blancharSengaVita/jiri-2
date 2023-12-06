@@ -20,17 +20,23 @@
         <p class="title--2">
             {{ __('information du jury')  }}
         </p>
+
         <fieldset class="create-jiri__fieldset">
             <div class="create-jiri__field">
                     <label for="jiriName"> {{ __('Le nom du jiri') }} </label>
                     <input type="text" wire:model="jiriName" id="jiriName" name="jiriName">
                 <div>@error('jiriName') {{ $message }} @enderror</div>
+
             </div>
 
             <div class="create-jiri__field">
                 <label for="jiriDate"> {{ __('La date du Jiri') }} </label>
                 <input type="text" wire:model="jiriDate" id="jiriDate" name="jiriDate">
             </div>
+
+            <button type="submit">
+                Enregistrer le jury
+            </button>
         </fieldset>
 
         <h2 class="sro">  {{ __('Étudiants ajoutés au jiri')  }} </h2>
@@ -67,7 +73,8 @@
         </p>
         <fieldset class="create-jiri__fieldset" x-on:click.outside="isEvaluatorModalOpen=false">
             <button x-on:click="isEvaluatorModalOpen = true">ajouter un Évaluateur </button>
-
+            <div>@error('jiriName') {{ $message }} @enderror</div>
+            @if(!$errors->any())
             <div
                 class="modal"
                 role="dialog"
@@ -81,15 +88,11 @@
                     :modal="'isEvaluatorModalOpen'"
                 />
             </div>
+            @endif
             <livewire:show-contact
                 :jiriId="$jiriId"
                 :role="'evaluator'"
             />
         </fieldset>
-
-        <button type="submit">
-            Enregistrer le jury
-        </button>
-
     </form>
 </div>

@@ -22,12 +22,11 @@
                 <label
                     for="contact-{{ $contact->id }}">{{ $contact->name }}
                     <input
-                        wire:click="removeToJiri({{ $contact }})"
+                        wire:click="deleteFromJiri({{ $contact }})"
                         value="{{ $contact->name }}"
                         type="checkbox"
                         id="selectedContact-{{ $contact->id }}">
                 </label>
-
             </li>
         @endforeach
     </ul>
