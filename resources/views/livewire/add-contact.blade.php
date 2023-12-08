@@ -1,15 +1,20 @@
 <div>
     <input wire:model.live="search" type="search">
     <h2> Not selected </h2>
+
+    <span> {{ $role  }} </span>
     <ul>
+        @php info($this->filteredContacts) @endphp
         @foreach($this->filteredContacts as $contact)
-            <li wire:key="{{$contact->id}}">
+            <li wire:key="{{$contact->id}}" wire:click="addToJiri({{ $contact->id }})">
                 <label for="contact-{{ $contact->id }}">{{ $contact->name }}
+                    <span>{{$role}}</span>
                     <input
-                        wire:click="addToJiri({{ $contact }})"
+
                         value="{{ $contact->name }}"
                         type="checkbox"
-                        id="contact-{{ $contact->id }}">
+                        id="contact-{{ $contact->id }}"
+                    >
                 </label>
             </li>
         @endforeach

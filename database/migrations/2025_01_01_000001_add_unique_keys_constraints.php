@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-
         Schema::table('contacts', function (Blueprint $table) {
             $table->unique(['email', 'user_id']);
         });

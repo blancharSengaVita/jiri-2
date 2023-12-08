@@ -4,6 +4,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\jiriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,10 +38,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/contacts', [ContactController::class, 'index']);
     Route::get('/contacts/create', [ContactController::class, 'create']);
-    Route::get('/contacts/{jiri}', [ContactController::class, 'show']);
-    Route::delete('/contacts/{jiri}', [ContactController::class, 'destroy']);
+    Route::get('/contacts/{contact}', [ContactController::class, 'show']);
+    Route::delete('/contacts/{contact}', [ContactController::class, 'destroy']);
 
-
+    Route::get('/projets', [ProjectController::class, 'index']);
+    Route::get('/projets/create', [ProjectController::class, 'create']);
+    Route::get('/projets/{project}', [ProjectController::class, 'show']);
+    Route::delete('/projets/{project}', [ProjectController::class, 'destroy']);
 });
 
 require __DIR__.'/auth.php';

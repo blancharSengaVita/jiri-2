@@ -30,10 +30,10 @@ class ContactController extends Controller
 
     public function destroy(Contact $contact)
     {
-        if (!Gate::allows('handle-note', $contact)) {
+        if (!Gate::allows('handle-contact', $contact)) {
             abort(403);
         }
         $contact->delete();
-        return redirect('/contact');
+        return redirect('/contacts');
     }
 }

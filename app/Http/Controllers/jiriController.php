@@ -29,7 +29,7 @@ class jiriController extends Controller
 
     public function destroy(Jiri $jiri)
     {
-        if (!Gate::allows('handle-note', $jiri)) {
+        if (!Gate::allows('handle-jiri', $jiri)) {
             abort(403);
         }
         $jiri->delete();

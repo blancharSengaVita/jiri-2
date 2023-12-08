@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -25,8 +26,8 @@ class CreateContact extends Component
     public function mount($contactId = 0) :void
     {
         if ($contactId) {
-            $contact = Auth::user()->contacts()->get();
-            $this->contactId = $contact->id;
+            $contact = Contact::where('id', $contactId)->first();
+            $this->contactId = $contact->id ;
 
             $this->firstname = $contact->name;
             $this->surname = $contact->name;
@@ -39,6 +40,20 @@ class CreateContact extends Component
             $this->email = '';
             $this->phoneNumber = '';
         }
+    }
+
+    public function save(): void
+    {
+        $this->validate();
+
+        $this->contactId = Auth::user()->contacts()->updateOrCreate([
+                'id' => $this->contactId
+            ],
+            [
+                'name' => $this->surname,
+                'phone' => $this->phoneNumber,
+                'email' => $this->email,
+            ])->id;
 
     }
 

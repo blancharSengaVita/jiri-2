@@ -3,10 +3,6 @@
         {{ __('Liste des contact') }}
     </x-slot:title>
 
-
-
-
-
     <table>
         <thead>
         <th>

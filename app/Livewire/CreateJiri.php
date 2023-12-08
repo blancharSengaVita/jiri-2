@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Jiri;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Rule;
@@ -27,7 +28,7 @@ class CreateJiri extends Component
     public function mount($jiriId = 0): void
     {
         if ($jiriId) {
-            $jiri = Auth::user()->jiris()->get();
+            $jiri =  Jiri::where('id', $jiriId)->first();
             $this->jiriId = $jiri->id;
 
             $this->jiriName = $jiri->name;
@@ -50,24 +51,6 @@ class CreateJiri extends Component
             ])->id;
 
     }
-
-//    #[computed]
-//    public function changeThisArray($field = [])
-//    {
-//        if ($field) {
-//            return $this->jiriId = Auth::user()->jiris()->updateOrCreate(['id' => $this->jiriId], $field)->id;
-//        }
-//    }
-//
-//    public function updatedJiriName(): void
-//    {
-//        $this->changeThisArray(['name' => $this->jiriName]);
-//    }
-//
-//    public function updatedJiriDate(): void
-//    {
-//        $this->changeThisArray(['starting_at' => $this->jiriDate]);
-//    }
 
     public function render()
     {

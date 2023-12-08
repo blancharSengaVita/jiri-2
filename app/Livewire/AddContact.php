@@ -28,29 +28,40 @@ class AddContact extends Component
         $this->search = '';
         $this->modal = $modal;
         $this->contacts = new Collection();
+        info($role);
     }
 
     #[Computed]
     public function filteredContacts(): Collection
     {
-        info($this->role);
-        return Contact::where('name', 'like', '%' . $this->search . '%')
-            ->where('user_id', Auth::user()->id)
+        return auth()
+            ->user()
+            ?->contacts()
+            ->where('name', 'like', '%' . $this->search . '%')
             ->whereDoesntHave('attendances', function ($query) {
                 $query->where('jiri_id', $this->jiriId);
             })
             ->get();
+
+
+        /*        return Contact::where('name', 'like', '%' . $this->search . '%')
+                    ->where('user_id', Auth::user()->id)
+                    ->whereDoesntHave('attendances', function ($query) {
+                        $query->where('jiri_id', $this->jiriId);
+                    })
+                    ->get();*/
     }
 
-    public function addToJiri(Contact $contact): void
+    public function addToJiri(int $id): void
     {
         Attendance::updateOrInsert([
             'jiri_id' => $this->jiriId,
-            'contact_id' => $contact->id,
+            'contact_id' => $id,
         ],
             [
                 'role' => $this->role,
             ]);
+        unset($this->addedTojury);
     }
 
     public function deleteFromJiri(Contact $contact)

@@ -4,7 +4,7 @@
     <form class="create-contact__form" method="post"
           action="/jiri"
           enctype="multipart/form-data"
-{{--          wire:submit.prevent="save"--}}
+          wire:submit.prevent="save"
     >
         <fieldset>
             <label for="surname"
@@ -42,7 +42,8 @@
                 wire:model="phoneNumber"
                 type="text"
                 name="phoneNumber"
-                id="phoneNumber">
+                id="phoneNumber"
+            >
         </fieldset>
         <filedset>
             <input

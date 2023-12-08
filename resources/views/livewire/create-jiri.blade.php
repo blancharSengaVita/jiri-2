@@ -10,9 +10,9 @@
           'isProjectModalOpen': false,
           }"
           x-on:keydown.escape="
-          isStudentModalOpen = false,
-          isEvaluatorModalOpen = false,
-          'isProjectModalOpen': false,
+          isStudentModalOpen = false;
+          isEvaluatorModalOpen = false;
+          isProjectModalOpen = false;
           "
           wire:submit.prevent="save"
     >

@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Contact;
 use App\Models\Jiri;
 use App\Models\Note;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -25,8 +27,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('handle-note', function (User $user, Jiri $jiri) {
+        Gate::define('handle-jiri', function (User $user, Jiri $jiri) {
             return $jiri->user_id === $user->id;
+        });
+
+        Gate::define('handle-contact', function (User $user, Contact $contact) {
+            return $contact->user_id === $user->id;
+        });
+
+        Gate::define('handle-project', function (User $user, Project $project) {
+            return $project->user_id === $user->id;
         });
     }
 }
