@@ -17,6 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::factory()->create([
+            'name' => 'Blanchar Senga-Vita',
+            'email' => 'anchar2107@gmail.com',
+            'password' => bcrypt('change_this'),
+        ]);
+
         $dominique = User::factory()
             ->has(Jiri::factory()->count(2))
             ->has(Project::factory()->count(4))

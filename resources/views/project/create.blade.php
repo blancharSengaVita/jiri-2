@@ -3,5 +3,5 @@
         {{ __('Création de Jiri') }}
     </x-slot:title>
 
-    <livewire:create-contact/>
+    <livewire:create-project/>
 </x-app-layout>

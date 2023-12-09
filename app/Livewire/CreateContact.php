@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -42,6 +45,17 @@ class CreateContact extends Component
         }
     }
 
+    #[On('giveThisId')]
+    public function contactIs($id){
+        $this->contactId = $id;
+        dd($id);
+    }
+
+    public function saveContactOnContactIndexPage(): void
+    {
+        $this->dispatch('saveContactOnContactIndexPage');
+    }
+
     public function save(): void
     {
         $this->validate();
@@ -55,7 +69,14 @@ class CreateContact extends Component
                 'email' => $this->email,
             ])->id;
 
+        $this->reset();
+        $this->contactId = 0;
     }
+
+//
+//    public function aaaa (){
+//
+//    }
 
     public function render()
     {

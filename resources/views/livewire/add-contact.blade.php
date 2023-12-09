@@ -7,7 +7,7 @@
         @php info($this->filteredContacts) @endphp
         @foreach($this->filteredContacts as $contact)
             <li wire:key="{{$contact->id}}" wire:click="addToJiri({{ $contact->id }})">
-                <label for="contact-{{ $contact->id }}">{{ $contact->name }}
+                <label for="{{$role}}-{{ $contact->id }}">{{ $contact->name }}
                     <span>{{$role}}</span>
                     <input
 
@@ -25,7 +25,7 @@
         @foreach($this->addedTojury as $contact)
             <li wire:key="{{$contact->id}}">
                 <label
-                    for="contact-{{ $contact->id }}">{{ $contact->name }}
+                    for="{{$role}}-{{ $contact->id }}">{{ $contact->name }}
                     <input
                         wire:click="deleteFromJiri({{ $contact }})"
                         value="{{ $contact->name }}"

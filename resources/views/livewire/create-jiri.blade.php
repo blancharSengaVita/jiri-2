@@ -2,7 +2,7 @@
     <h1 class="sro"> {{ __('Création d’un jury')  }} </h1>
     <p class="title--1"> {{ __('Création d’un jury')  }} </p>
     <form class="create-jiri__form" method="post"
-          action="/jiri"
+          action="/jiries"
           enctype="multipart/form-data"
           x-data="{
           'isStudentModalOpen': false,

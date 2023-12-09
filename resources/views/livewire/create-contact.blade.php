@@ -2,7 +2,7 @@
     <h1 class="sro"> {{ __('Création d’un contact')  }} </h1>
     <p class="title--1"> {{ __('Création d’un contact')  }} </p>
     <form class="create-contact__form" method="post"
-          action="/jiri"
+          action="/contacts"
           enctype="multipart/form-data"
           wire:submit.prevent="save"
     >
@@ -52,6 +52,6 @@
                 value="Ajouter une image">
         </filedset>
 
-        <input type="submit" value="Enregistrer un contact">
+        <input wire:click="saveContactOnContactIndexPage" x-on:click="" type="submit" value="Enregistrer un contact">
     </form>
 </div>
