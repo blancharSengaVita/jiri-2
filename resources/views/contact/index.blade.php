@@ -4,6 +4,4 @@
     </x-slot:title>
 
     <livewire:contact-list :user="$user" />
-
-
 </x-app-layout>

@@ -26,6 +26,7 @@ class CreateContact extends Component
     #[Validate('required')]
     public string $phoneNumber;
 
+    #[On('giveThisId')]
     public function mount($contactId = 0) :void
     {
         if ($contactId) {
@@ -45,11 +46,16 @@ class CreateContact extends Component
         }
     }
 
-    #[On('giveThisId')]
-    public function contactIs($id){
-        $this->contactId = $id;
-        dd($id);
-    }
+//    #[On('giveThisId')]
+//    public function contactId($id){
+//        $contact = Contact::where('id', $id)->first();
+//        $this->contactId = $contact->id;
+//
+//        $this->firstname = $contact->name;
+//        $this->surname = $contact->name;
+//        $this->email = $contact->email;
+//        $this->phoneNumber = $contact->phone;
+//    }
 
     public function saveContactOnContactIndexPage(): void
     {
@@ -72,11 +78,6 @@ class CreateContact extends Component
         $this->reset();
         $this->contactId = 0;
     }
-
-//
-//    public function aaaa (){
-//
-//    }
 
     public function render()
     {

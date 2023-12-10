@@ -1,6 +1,8 @@
-<div x-data="{
+<div
+    x-data="{
           'isCreateContactModalOpen': false,
           'isModifyContactModalOpen': false,
+          'eventId' : '',
           }"
      x-on:keydown.escape="
           isCreateContactModalOpen = false;
@@ -13,9 +15,9 @@
 
         </th>
         </thead>
-        <tbody>
+        <tbody   >
         @foreach($user->contacts as $contact)
-            <livewire:contact-row :key="$contact->id" :$contact/>
+            <livewire:contact-row key="$contact->id" :$contact/>
         @endforeach
         </tbody>
     </table>
@@ -25,6 +27,9 @@
         <livewire:create-contact/>
     </div>
 
-    <div x-on:giveThisId="isModifyContactModalOpen = true" x-show="isModifyContactModalOpen">
-    </div>
+{{--    <div--}}
+{{--        x-on:giveThisId="isModifyContactModalOpen = true"--}}
+{{--        x-show="isModifyContactModalOpen">--}}
+{{--        <livewire:create-contact/>--}}
+{{--    </div>--}}
 </div>

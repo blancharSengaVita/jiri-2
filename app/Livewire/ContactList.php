@@ -18,10 +18,14 @@ class ContactList extends Component
         $this->user = $user;
     }
 
-    #[computed]
-    public function thisIdIs($id = 0){
-        return $id;
+    public function coontactId(){
+        dd('je suis dans coontactID');
     }
+
+//    #[computed]
+//    public function thisIdIs($id = 0){
+//        return $id;
+//    }
 
     #[On('saveContactOnContactIndexPage')]
     public function render()
