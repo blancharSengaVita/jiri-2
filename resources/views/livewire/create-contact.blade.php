@@ -5,6 +5,12 @@
           action="/contacts"
           enctype="multipart/form-data"
           wire:submit.prevent="save"
+
+          @if($errors->any())
+              x-data="{ 'isCreateContactModalOpen' : true }"
+          @else
+              x-data="{ 'isCreateContactModalOpen' : false }"
+        @endif
     >
         <fieldset>
             <label for="surname"
@@ -14,7 +20,11 @@
                 type="text"
                 name="surname"
                 id="surname">
+            @error('surname')
+            {{ $message }}
+            @enderror
         </fieldset>
+
         <fieldset>
             <label
                 for="firstname"
@@ -47,11 +57,15 @@
         </fieldset>
         <filedset>
             <input
+
                 type="file"
                 name="picutre" id="picture"
                 value="Ajouter une image">
         </filedset>
 
-        <input wire:click="saveContactOnContactIndexPage" x-on:click="" type="submit" value="Enregistrer un contact">
+        <input
+            {{--            x-on:click=""--}}
+            type="submit"
+            value="Enregistrer un contact">
     </form>
 </div>

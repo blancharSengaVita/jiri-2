@@ -66,8 +66,8 @@ class AddContact extends Component
 
     public function deleteFromJiri(Contact $contact)
     {
-        Attendance::where('jiri_id', '=', $this->jiriId)
-            ->where('contact_id', '=', $contact->id)
+        Attendance::where('jiri_id', $this->jiriId)
+            ->where('contact_id', $contact->id)
             ->delete();
     }
 

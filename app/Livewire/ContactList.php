@@ -11,23 +11,38 @@ use Livewire\Component;
 class ContactList extends Component
 {
     public User $user;
-
+    public bool $modal;
 
     public function mount($user)
     {
         $this->user = $user;
+        $this->modal = true;
     }
 
-    public function coontactId(){
-        dd('je suis dans coontactID');
+    public function editThisContact($contactId)
+    {
+        $this->dispatch('editThisContact', contactId: $contactId)->to(createContact::class);
     }
 
-//    #[computed]
-//    public function thisIdIs($id = 0){
-//        return $id;
-//    }
+    public function deleteThisContact($contactId)
+    {
+        $this->dispatch('deleteThisContact', contactId: $contactId)->to(createContact::class);
+    }
 
-    #[On('saveContactOnContactIndexPage')]
+    #[On('createContact')]
+    public function createContact()
+    {
+        $this->dispatch('createContact')->to(createContact::class);
+    }
+
+    #[On('saveTheContact')]
+    #[On('deleteThisContact')]
+    public function refreshTheComponent()
+    {
+        $this->mount($this->user);
+        $this->render();
+    }
+
     public function render()
     {
         return view('livewire.contact-list');

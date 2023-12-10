@@ -11,9 +11,9 @@ class ContactRow extends Component
     public Contact $contact;
 
 
-    public function giveThisId($id): void
+    public function editThisContact($contactId): void
     {
-        $this->dispatch('giveThisId', contactId: $id)->to(CreateContact::class);
+        $this->dispatch('editThisContact', contactId: $contactId)->to(CreateContact::class);
     }
 
     public function render()

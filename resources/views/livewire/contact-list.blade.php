@@ -17,19 +17,27 @@
         </thead>
         <tbody   >
         @foreach($user->contacts as $contact)
-            <livewire:contact-row key="$contact->id" :$contact/>
+{{--            <livewire:contact-row key="$contact->id" :$contact/>--}}
+<tr>
+    <td> Image à mettre</td>
+    <td> {{ $contact->name }} </td>
+    <td> {{ $contact->phone }} </td>
+    <td> {{ $contact->email }} </td>
+    <td>
+        <button x-on:click="isCreateContactModalOpen = true" wire:click="editThisContact({{ $contact->id}})"> Modifier </button>
+        <button wire:click="deleteThisContact({{ $contact->id}})"> Supprimer </button>
+    </td>
+</tr>
         @endforeach
         </tbody>
     </table>
 
-    <button x-on:click="isCreateContactModalOpen = true"> Créer un contact</button>
-    <div x-show="isCreateContactModalOpen">
-        <livewire:create-contact/>
-    </div>
+    <button type="button" wire:click="$refresh" > refresh </button>
 
-{{--    <div--}}
-{{--        x-on:giveThisId="isModifyContactModalOpen = true"--}}
-{{--        x-show="isModifyContactModalOpen">--}}
-{{--        <livewire:create-contact/>--}}
-{{--    </div>--}}
+    <button
+        wire:click="createContact"
+        x-on:click="isCreateContactModalOpen = $wire.modal">  Créer un contact</button>
+    <div x-show="isCreateContactModalOpen">
+        <livewire:create-contact />
+    </div>
 </div>

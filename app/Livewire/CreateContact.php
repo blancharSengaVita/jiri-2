@@ -26,57 +26,69 @@ class CreateContact extends Component
     #[Validate('required')]
     public string $phoneNumber;
 
-    #[On('giveThisId')]
-    public function mount($contactId = 0) :void
-    {
-        if ($contactId) {
-            $contact = Contact::where('id', $contactId)->first();
-            $this->contactId = $contact->id ;
+    public bool $isCreateContactModalOpen;
 
-            $this->firstname = $contact->name;
-            $this->surname = $contact->name;
-            $this->email = $contact->email;
-            $this->phoneNumber = $contact->phone;
-        } else {
-            $this->contactId = $contactId;
-            $this->firstname = '';
-            $this->surname = '';
-            $this->email = '';
-            $this->phoneNumber = '';
-        }
+    public function mount(): void
+    {
+        $this->createContact();
+        $this->isCreateContactModalOpen = true;
     }
 
-//    #[On('giveThisId')]
-//    public function contactId($id){
-//        $contact = Contact::where('id', $id)->first();
-//        $this->contactId = $contact->id;
-//
-//        $this->firstname = $contact->name;
-//        $this->surname = $contact->name;
-//        $this->email = $contact->email;
-//        $this->phoneNumber = $contact->phone;
-//    }
-
-    public function saveContactOnContactIndexPage(): void
+    #[On('createContact')]
+    public function createContact($contactId = 0)
     {
-        $this->dispatch('saveContactOnContactIndexPage');
+        $this->contactId = $contactId;
+        $this->firstname = '';
+        $this->surname = '';
+        $this->email = '';
+        $this->phoneNumber = '';
+    }
+
+    #[On('editThisContact')]
+    public function openEditModal($contactId)
+    {
+        $contact = Contact::where('id', $contactId)->first();
+        $this->contactId = $contact->id;
+
+        $this->firstname = $contact->name;
+        $this->surname = $contact->name;
+        $this->email = $contact->email;
+        $this->phoneNumber = $contact->phone;
+    }
+
+    #[On('deleteThisContact')]
+    public function deleteThisContact($contactId)
+    {
+        Contact::where('id', $contactId)->delete();
+        $this->dispatch('deleteThisContact')->to(ContactList::class);
+    }
+
+    #[computed]
+    public function isCreateContactModalOpen()
+    {
+        return $this->isCreateContactModalOpen = false;
     }
 
     public function save(): void
     {
+        $this->isCreateContactModalOpen();
         $this->validate();
 
-        $this->contactId = Auth::user()->contacts()->updateOrCreate([
-                'id' => $this->contactId
-            ],
+
+        Auth::user()->contacts()->updateOrCreate([
+            'id' => $this->contactId
+        ],
             [
                 'name' => $this->surname,
                 'phone' => $this->phoneNumber,
                 'email' => $this->email,
-            ])->id;
+            ]);
 
-        $this->reset();
-        $this->contactId = 0;
+        if (!$this->contactId) {
+            $this->reset();
+        }
+
+        $this->dispatch('saveTheContact')->to(ContactList::class);
     }
 
     public function render()
