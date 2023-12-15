@@ -31,17 +31,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/jiries', [JiriController::class, 'index']);
+    Route::get('/jiries', [JiriController::class, 'index'])->name('jiries');
     Route::get('/jiries/create', [JiriController::class, 'create']);
     Route::get('/jiries/{jiri}', [JiriController::class, 'show']);
     Route::delete('/jiries/{jiri}', [JiriController::class, 'destroy']);
 
-    Route::get('/contacts', [ContactController::class, 'index']);
+    Route::get('/contacts', [ContactController::class, 'index'])->name('contacts');
     Route::get('/contacts/create', [ContactController::class, 'create']);
     Route::get('/contacts/{contact}', [ContactController::class, 'show']);
     Route::delete('/contacts/{contact}', [ContactController::class, 'destroy']);
 
-    Route::get('/projets', [ProjectController::class, 'index']);
+    Route::get('/projets', [ProjectController::class, 'index'])->name('projects');
     Route::get('/projets/create', [ProjectController::class, 'create']);
     Route::get('/projets/{project}', [ProjectController::class, 'show']);
     Route::delete('/projets/{project}', [ProjectController::class, 'destroy']);
