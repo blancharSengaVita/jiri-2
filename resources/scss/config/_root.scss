@@ -1,13 +1,17 @@
 @import "vars";
+
 :root {
     font-family: Lato, sans-serif;
     font-size: 16px;
+    min-height:100vh ;
+    background-color: $background-color;
 }
 
 html {
     width: 100%;
     height: 100%;
 }
+
 body {
     width: 100%;
     height: 100%;
@@ -22,12 +26,12 @@ h2 {
 }
 
 a {
-    @include a
+    //@include a
 }
 
 a:visited {
-    text-decoration: underline;
-    color: #005CE7;
+    //text-decoration: underline;
+    //color: #005CE7;
 }
 
 form {
@@ -44,7 +48,7 @@ form {
     }
 
     label {
-        margin-block-end:0.5rem;
+        margin-block-end: 0.5rem;
     }
 
     & .error {
@@ -53,10 +57,10 @@ form {
     }
 
     a {
-        margin-block-end:0.5rem;
+        margin-block-end: 0.5rem;
     }
 
-    & .form__link--tiny{
+    & .form__link--tiny {
         font-size: 0.75rem;
     }
 }
@@ -88,5 +92,7 @@ button {
     border-width: 0;
     font-size: 1rem;
 }
+
+
 
 

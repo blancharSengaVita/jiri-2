@@ -34,3 +34,19 @@
         margin-block-end: 1rem;
     }
 }
+
+.button {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    background-color: #FF6100;
+    padding-block: 0.625rem;
+    padding-inline: 0.625rem;
+    border-radius: 10px;
+    border-width: 0;
+    font-size: 1rem;
+}
+
+.inputTypeFile {
+    display: none;
+}

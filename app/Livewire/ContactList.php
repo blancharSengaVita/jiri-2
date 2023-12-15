@@ -12,15 +12,18 @@ class ContactList extends Component
 {
     public User $user;
     public bool $modal;
+    public bool $isCreateContactModal;
 
     public function mount($user)
     {
+        $this->isCreateContactModal = false;
         $this->user = $user;
         $this->modal = true;
     }
 
     public function editThisContact($contactId)
     {
+        $this->isCreateContactModal = true;
         $this->dispatch('editThisContact', contactId: $contactId)->to(createContact::class);
     }
 
@@ -32,6 +35,7 @@ class ContactList extends Component
     #[On('createContact')]
     public function createContact()
     {
+        $this->isCreateContactModal = true;
         $this->dispatch('createContact')->to(createContact::class);
     }
 
@@ -39,6 +43,7 @@ class ContactList extends Component
     #[On('deleteThisContact')]
     public function refreshTheComponent()
     {
+        $this->isCreateContactModal = false;
         $this->mount($this->user);
         $this->render();
     }

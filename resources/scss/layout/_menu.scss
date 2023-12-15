@@ -1,7 +1,9 @@
 @import "vars";
 
 .menu {
-    height: auto;
+    position: fixed;
+    height: calc(100% - 4rem);
+    width: 170px;
     background-color: $nav-color;
     padding-inline-start: 3rem;
     padding-inline-end: 2rem;

@@ -26,12 +26,9 @@ class CreateContact extends Component
     #[Validate('required')]
     public string $phoneNumber;
 
-    public bool $isCreateContactModalOpen;
-
     public function mount(): void
     {
         $this->createContact();
-        $this->isCreateContactModalOpen = true;
     }
 
     #[On('createContact')]
@@ -63,17 +60,9 @@ class CreateContact extends Component
         $this->dispatch('deleteThisContact')->to(ContactList::class);
     }
 
-    #[computed]
-    public function isCreateContactModalOpen()
-    {
-        return $this->isCreateContactModalOpen = false;
-    }
-
     public function save(): void
     {
-        $this->isCreateContactModalOpen();
         $this->validate();
-
 
         Auth::user()->contacts()->updateOrCreate([
             'id' => $this->contactId
