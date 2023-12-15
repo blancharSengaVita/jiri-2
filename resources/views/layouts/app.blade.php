@@ -13,12 +13,10 @@
 
 <body class="">
 <!-- Page Content -->
+<div class="app-layout">
 <h1 class="sro"> Dashboard </h1>
-<main class="app-layout">
-
-    <div class="app-layout__container menu">
+    <header class="app-layout__container menu">
         <p class="menu__logo">jiri</p>
-        <p class="menu__title" > menu </p>
         @include('layouts.navigation')
         <div class="menu__logout logout">
             <form class="logout__form" method="POST" action="{{ route('logout') }}">
@@ -31,17 +29,17 @@
             </form>
             <!-- Authentication -->
         </div>
-    </div>
+    </header>
 
-    <div class="app-layout__container">
+    <main class="app-layout__container">
         <div class="profil" >
             <div class="profil__card">
                 <p class="" >{{ Auth::user()->name }}</p>
             </div>
         </div>
         {{ $slot }}
-    </div>
+    </main>
 
-</main>
+</div>
 </body>
 </html>

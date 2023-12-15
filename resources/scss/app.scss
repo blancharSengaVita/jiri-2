@@ -3,10 +3,10 @@
 /*@tailwind utilities;*/
 
 //config
-@import "reset.scss";
-@import "root.scss";
-@import "utils.scss";
-@import "vars.scss";
+@import "config/reset.scss";
+@import "config/root.scss";
+@import "config/utils.scss";
+@import "config/vars.scss";
 
 //layout
 @import "layout/guest.scss";
@@ -19,6 +19,10 @@
 @import "jiri/create.scss";
 @import "jiri/index.scss";
 
+@import "auth/auth.scss";
+@import "layout/menu.scss";
 
-@import "auth.scss";
-@import "menu.scss";
+
+@import "contact/contactList.scss";
+
+@import "projects/projects.scss";
