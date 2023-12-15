@@ -1,0 +1,75 @@
+@import "../config/vars";
+
+.contact-list {
+
+
+    .table {
+        @include cardBackground();
+        width: 100%;
+        border-collapse: separate;
+        margin-block-end: 2rem;
+    }
+
+    td, th {
+        text-align: center;
+        border-bottom: 1px $table-row-color solid;
+        padding-block: 1.5rem;
+    }
+
+    td {
+        color: $table-color;
+    }
+
+    &__button {
+        @include resetButton();
+        margin-inline-end: .5rem;
+    }
+
+    &__svg {
+        @include svgIcon();
+        width: 22px;
+        height: 22px;
+    }
+
+    &__action {
+        display: flex;
+        justify-content: space-around;
+    }
+}
+
+
+.create-contact {
+    z-index: 1;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        @include cardBackground();
+        width: 700px;
+        min-height: 200px;
+        height: auto;
+        max-height: 700px;
+        background-color: white;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    fieldset {
+        @include field();
+        margin-block-end: 1.5rem;
+    }
+
+    &__upload {
+        @include button();
+        cursor:pointer;
+        margin-inline-end: 0.5rem;
+    }
+}
