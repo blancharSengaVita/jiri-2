@@ -4,9 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Reactive;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -65,7 +63,7 @@ class CreateContact extends Component
         $this->validate();
 
         Auth::user()->contacts()->updateOrCreate([
-            'id' => $this->contactId
+            'id' => $this->contactId,
         ],
             [
                 'name' => $this->surname,
@@ -73,7 +71,7 @@ class CreateContact extends Component
                 'email' => $this->email,
             ]);
 
-        if (!$this->contactId) {
+        if (! $this->contactId) {
             $this->reset();
         }
 

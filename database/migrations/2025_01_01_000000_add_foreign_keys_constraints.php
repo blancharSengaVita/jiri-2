@@ -15,19 +15,19 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
         Schema::table('contacts', static function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
         Schema::table('attendances', static function (Blueprint $table) {
             $table->foreignId('contact_id')->constrained()->onDelete('cascade');
             $table->foreignId('jiri_id')->constrained()->onDelete('cascade');
         });
         Schema::table('projects', static function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
         Schema::table('implementations', static function (Blueprint $table) {
-            $table->foreignId('project_id')->constrained()->onDelete('cascade');;
-            $table->foreignId('contact_id')->constrained()->onDelete('cascade');;
-            $table->foreignId('jiri_id')->constrained()->onDelete('cascade');;
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contact_id')->constrained()->onDelete('cascade');
+            $table->foreignId('jiri_id')->constrained()->onDelete('cascade');
         });
 
     }

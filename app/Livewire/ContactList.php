@@ -3,22 +3,19 @@
 namespace App\Livewire;
 
 use App\Models\User;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
-use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class ContactList extends Component
 {
     public User $user;
-    public bool $modal;
+
     public bool $isCreateContactModal;
 
     public function mount($user)
     {
         $this->isCreateContactModal = false;
         $this->user = $user;
-        $this->modal = true;
     }
 
     public function editThisContact($contactId)

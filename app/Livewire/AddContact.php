@@ -15,11 +15,15 @@ class AddContact extends Component
 {
     #[Url]
     public string $search;
+
     #[Reactive]
     public int $jiriId;
+
     #[Computed]
     public string $role;
+
     public string $modal;
+
     public Collection $contacts;
 
     public function mount($role, $modal): void
@@ -37,12 +41,11 @@ class AddContact extends Component
         return auth()
             ->user()
             ?->contacts()
-            ->where('name', 'like', '%' . $this->search . '%')
+            ->where('name', 'like', '%'.$this->search.'%')
             ->whereDoesntHave('attendances', function ($query) {
                 $query->where('jiri_id', $this->jiriId);
             })
             ->get();
-
 
         /*        return Contact::where('name', 'like', '%' . $this->search . '%')
                     ->where('user_id', Auth::user()->id)
@@ -80,7 +83,6 @@ class AddContact extends Component
         })
             ->get();
     }
-
 
     public function render()
     {

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Models\Jiri;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +12,7 @@ class ContactController extends Controller
     {
         $user = Auth::user();
         $user->load('contacts');
+
         return view('contact.index', compact('user'));
     }
 
@@ -27,13 +26,13 @@ class ContactController extends Controller
         return view('contact.show', compact('contact'));
     }
 
-
     public function destroy(Contact $contact)
     {
-        if (!Gate::allows('handle-contact', $contact)) {
+        if (! Gate::allows('handle-contact', $contact)) {
             abort(403);
         }
         $contact->delete();
+
         return redirect('/contacts');
     }
 }

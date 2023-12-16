@@ -5,7 +5,6 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use App\Models\Contact;
 use App\Models\Jiri;
-use App\Models\Note;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ProjectController extends Controller
 {
@@ -13,6 +12,7 @@ class ProjectController extends Controller
     {
         $user = Auth::user();
         $user->load('projects');
+
         return view('project.index', compact('user'));
     }
 
@@ -26,13 +26,13 @@ class ProjectController extends Controller
         return view('project.show', compact('project'));
     }
 
-
     public function destroy(Project $project)
     {
-        if (!Gate::allows('handle-project', $project)) {
+        if (! Gate::allows('handle-project', $project)) {
             abort(403);
         }
         $project->delete();
+
         return redirect('/projects');
     }
 }

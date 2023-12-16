@@ -1,5 +1,9 @@
 @import "vars";
 
+[x-cloak] {
+    display: none !important;
+}
+
 :root {
     font-family: Lato, sans-serif;
     font-size: 16px;
@@ -43,8 +47,14 @@ form {
         //margin-block-end: 1rem;
     }
 
-    input {
+    textarea {
+        @include input();
+        @include font;
+    }
 
+    textarea:focus-visible {
+        outline: #FF6100;
+        border-color: #FF6100;
     }
 
     label {

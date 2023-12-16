@@ -6,7 +6,6 @@
               action="/contacts"
               enctype="multipart/form-data"
               wire:submit.prevent="save"
-              x-on:submit.prevent="console.log(isCreateContactModalOpen)"
         >
             <fieldset class="create-contact__fieldset">
                 <label for="surname"

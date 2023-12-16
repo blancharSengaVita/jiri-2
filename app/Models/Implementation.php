@@ -28,7 +28,6 @@ class Implementation extends Model
             ->belongsTo(Project::class);
     }
 
-
     public function getScoresAttribute($value)
     {
         return json_decode($value);

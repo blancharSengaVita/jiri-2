@@ -7,9 +7,7 @@ use Livewire\Component;
 
 class ContactRow extends Component
 {
-
     public Contact $contact;
-
 
     public function editThisContact($contactId): void
     {
