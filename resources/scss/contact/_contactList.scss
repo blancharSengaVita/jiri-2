@@ -1,8 +1,6 @@
 @import "../config/vars";
 
 .contact-list {
-
-
     .table {
         @include cardBackground();
         width: 100%;
@@ -63,9 +61,14 @@
         flex-direction: column;
     }
 
-    fieldset {
+    .create-contact__fieldset {
         @include field();
         margin-block-end: 1.5rem;
+    }
+
+    .create-contact__fieldset--button {
+        @include field();
+        width: fit-content;
     }
 
     &__upload {

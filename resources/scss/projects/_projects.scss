@@ -1,3 +1,44 @@
-.create-contact__label {
+.create-project {
+    &__label {
+        display: flex;
+    }
 
+    &__fieldset {
+        display: flex;
+        @include field();
+    }
+
+    &__field--sub {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    &__fieldset--sub {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-block-end: 1rem;
+
+        input {
+            width: 80%;
+        }
+
+        .button__icon {
+            width: 24px;
+            height: 24px;
+            stroke: $app-color;
+            stroke-width: 1px;
+        }
+    }
 }
+
+.addLink {
+    margin-inline-start: 0.5rem;
+    width: 20px;
+    height: 20px;
+    stroke: $app-color;
+    stroke-width: 1px;
+}
+
+//class="create-projet__input--sub

@@ -24,21 +24,6 @@ class CreateProject extends Component
     public function mount($projectId = 0): void
     {
         $this->createProject();
-
-        //        if ($projectId) {
-        //            $project = Project::where('id', $projectId)->first();
-        //            $this->projectId = $project->id ;
-        //
-        //            $this->name = $project->name;
-        //            $this->description = $project->description;
-        //        } else {
-        //            $this->projectId = $projectId;
-        //            $this->name = '';
-        //            $this->description = '';
-        //            $this->fill([
-        //                'linkInputs' => collect([['link' =>'']]),
-        //            ]);
-        //        }
     }
 
     protected $rules = [

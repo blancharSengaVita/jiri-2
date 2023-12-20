@@ -51,7 +51,7 @@
                 >
             </fieldset>
 
-            <filedset class="create-contact__fieldset">
+{{--            <filedset class="create-contact__fieldset--button">--}}
                 <label
                     class="create-contact__upload"
                     for="picture">
@@ -62,7 +62,7 @@
                         name="picture" id="picture"
                         value="Ajouter une image">
                 </label>
-            </filedset>
+{{--            </filedset>--}}
 
             <button
                 type="submit">
