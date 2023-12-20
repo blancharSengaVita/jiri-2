@@ -12,7 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->json('link')->nullable();
+            $table->json('links')->nullable();
+            $table->json('tasks')->nullable();
             $table->timestamps();
         });
     }

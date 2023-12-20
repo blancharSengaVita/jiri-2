@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class CreateProject extends Component
 {
+    //   Déclaration de variable
     public int $projectId;
 
     #[Validate('required')]
@@ -20,20 +21,26 @@ class CreateProject extends Component
     public string $description;
 
     public Collection $linkInputs;
+    public Collection $tasks;
 
+    //   Mount
     public function mount($projectId = 0): void
     {
         $this->createProject();
     }
 
+    //   Rules
     protected $rules = [
         'linkInputs.*' => 'required',
+        'tasks.*' => 'required',
     ];
 
     protected $messages = [
         'linkInputs.*.required' => 'This link field is required.',
+        'tasks.*.required' => 'This tasks field is required.',
     ];
 
+    //    Function propre
     public function addLinkInput()
     {
         $this->linkInputs->push('');
@@ -44,6 +51,17 @@ class CreateProject extends Component
         $this->linkInputs->pull($key);
     }
 
+    public function addTasks()
+    {
+        $this->tasks->push('');
+    }
+
+    public function removeTasks($key)
+    {
+        $this->tasks->pull($key);
+    }
+
+    //    CRUD
     #[On('createProject')]
     public function createProject($projectId = 0)
     {
@@ -51,7 +69,9 @@ class CreateProject extends Component
         $this->name = '';
         $this->description = '';
         $this->linkInputs = new Collection();
-        $this->linkInputs->push('');
+//        $this->linkInputs->push('');
+        $this->tasks = new Collection();
+//        $this->tasks->push('');
     }
 
     #[On('editThisProject')]
@@ -62,7 +82,8 @@ class CreateProject extends Component
 
         $this->name = $project->name;
         $this->description = $project->description;
-        $this->linkInputs = collect(json_decode($project->link));
+        $this->linkInputs = collect(json_decode($project->links));
+        $this->tasks = collect(json_decode($project->tasks));
     }
 
     #[On('deleteThisProject')]
@@ -82,7 +103,8 @@ class CreateProject extends Component
             [
                 'name' => $this->name,
                 'description' => $this->description,
-                'link' => json_encode($this->linkInputs),
+                'links' => json_encode($this->linkInputs),
+                'tasks' => json_encode($this->tasks),
             ]);
 
         if (! $this->projectId) {

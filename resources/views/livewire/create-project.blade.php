@@ -31,7 +31,7 @@
             </fieldset>
 
             <fieldset class="create-projet__fieldset">
-                <label class="create-project__label " for="addLinks">
+                <label class="create-project__label cursor-pointer"  for="addLinks">
                     Le nom des liens qui seront attribués aux projets
                     <svg class="create-project__svg addLink button__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                         <path fill="currentColor" d="M14 7v1H8v6H7V8H1V7h6V1h1v6z"/>
@@ -61,6 +61,38 @@
                         </div>
                     </fieldset>
 
+                @endforeach
+            </fieldset>
+
+            <fieldset class="create-projet__fieldset">
+                <label class="create-project__label cursor-pointer" for="addTasks">
+                    Les taches attribuées au projet
+                    <svg class="create-project__svg addLink button__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <path fill="currentColor" d="M14 7v1H8v6H7V8H1V7h6V1h1v6z"/>
+                    </svg>
+
+                    <input class="display-none create-project__input" id="addTasks" type="button" value="Les taches attribuées au projet" wire:click="addTasks">
+                </label>
+
+
+                {{--                nommer les les--}}
+                @foreach($tasks as $key => $task)
+                    <fieldset class="create-project__fieldset--sub" wire:key="{{ $key }}">
+                        <div class="create-project__field--sub">
+                            <input class="create-project__input--sub" type="text" id="task_{{$key}}" wire:model.live="tasks.{{$key}}">
+
+
+                            @if($key > 0)
+                                <svg class="create-project__input--sub button__icon"
+                                     wire:click="removeTasks({{$key}})" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                                    <path fill="currentColor" fill-rule="evenodd" d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708z" clip-rule="evenodd"/>
+                                </svg>
+                            @endif
+                        </div>
+                        <div class="create-project__error">
+                            @error('tasks.' .$key) <p>{{ $message }}</p> @enderror
+                        </div>
+                    </fieldset>
                 @endforeach
             </fieldset>
             <button class="button" for="saveProject">
