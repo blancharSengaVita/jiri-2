@@ -39,10 +39,11 @@
 
                     <input class="display-none create-project__input" id="addLinks" type="button" value="le nom des liens qui seront attribués aux projets" wire:click="addLinkInput">
                 </label>
-                
+
 
                 {{--                nommer les les--}}
                 @foreach($linkInputs as $key => $input)
+{{--                    @json($input)--}}
                     <fieldset class="create-project__fieldset--sub" wire:key="{{ $key }}">
                         <div class="create-project__field--sub">
                             <input class="create-project__input--sub" type="text" id="input_{{$key}}_link" wire:model.live="linkInputs.{{$key}}.link">

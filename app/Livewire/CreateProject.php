@@ -36,7 +36,7 @@ class CreateProject extends Component
 
     public function addLinkInput()
     {
-        $this->linkInputs->push(['link' => '']);
+        $this->linkInputs->push([]);
     }
 
     public function removeLinkInput($key)
@@ -51,7 +51,9 @@ class CreateProject extends Component
         $this->name = '';
         $this->description = '';
         $this->fill([
-            'linkInputs' => collect([['link' => '']]),
+            $this->linkInputs = collect([
+                ['link' => '']
+            ]),
         ]);
     }
 
@@ -63,6 +65,10 @@ class CreateProject extends Component
 
         $this->name = $project->name;
         $this->description = $project->description;
+        dd(collect(json_decode($project->link)), $this->linkInputs);
+        $this->fill([
+            $this->linkInputs = collect(json_decode($project->link)),
+        ]);
     }
 
     #[On('deleteThisProject')]
@@ -82,7 +88,7 @@ class CreateProject extends Component
             [
                 'name' => $this->name,
                 'description' => $this->description,
-                'link' => '{"pid": 101, "name": "name1"}',
+                'link' => json_encode($this->linkInputs),
             ]);
 
         if (! $this->projectId) {
