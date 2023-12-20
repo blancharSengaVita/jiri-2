@@ -27,16 +27,16 @@ class CreateProject extends Component
     }
 
     protected $rules = [
-        'linkInputs.*.link' => 'required',
+        'linkInputs.*' => 'required',
     ];
 
     protected $messages = [
-        'linkInputs.*.link.required' => 'This link field is required.',
+        'linkInputs.*.required' => 'This link field is required.',
     ];
 
     public function addLinkInput()
     {
-        $this->linkInputs->push([]);
+        $this->linkInputs->push('');
     }
 
     public function removeLinkInput($key)
@@ -50,11 +50,8 @@ class CreateProject extends Component
         $this->projectId = $projectId;
         $this->name = '';
         $this->description = '';
-        $this->fill([
-            $this->linkInputs = collect([
-                ['link' => '']
-            ]),
-        ]);
+        $this->linkInputs = new Collection();
+        $this->linkInputs->push('');
     }
 
     #[On('editThisProject')]
@@ -65,10 +62,7 @@ class CreateProject extends Component
 
         $this->name = $project->name;
         $this->description = $project->description;
-        dd(collect(json_decode($project->link)), $this->linkInputs);
-        $this->fill([
-            $this->linkInputs = collect(json_decode($project->link)),
-        ]);
+        $this->linkInputs = collect(json_decode($project->link));
     }
 
     #[On('deleteThisProject')]

@@ -13,6 +13,10 @@ class Project extends Model
 
     protected $fillable = ['id', 'name', 'description', 'link'];
 
+    protected $casts = [
+        'links' => 'array'
+    ];
+
     public function User(): BelongsTo
     {
         return $this

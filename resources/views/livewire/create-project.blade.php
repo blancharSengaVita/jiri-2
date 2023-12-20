@@ -46,7 +46,8 @@
 {{--                    @json($input)--}}
                     <fieldset class="create-project__fieldset--sub" wire:key="{{ $key }}">
                         <div class="create-project__field--sub">
-                            <input class="create-project__input--sub" type="text" id="input_{{$key}}_link" wire:model.live="linkInputs.{{$key}}.link">
+                            <input class="create-project__input--sub" type="text" id="input_{{$key}}" wire:model.live="linkInputs.{{$key}}">
+
 
                             @if($key > 0)
                                 <svg class="create-project__input--sub button__icon"
@@ -56,7 +57,7 @@
                             @endif
                         </div>
                         <div class="create-project__error">
-                            @error('linkInputs.' .$key. '.link') <p>{{ $message }}</p> @enderror
+                            @error('linkInputs.' .$key) <p>{{ $message }}</p> @enderror
                         </div>
                     </fieldset>
 
