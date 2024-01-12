@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactHomeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\jiriController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\TokenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +24,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomepageController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/mail', [MailController::class, 'index']);
+
+Route::post('/mail', [MailController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('token')->name('dashboard');
+Route::post('/dashboard', [DashboardController::class, 'store'])->middleware('token')->name('dashboard');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,4 +56,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/projets/{project}', [ProjectController::class, 'destroy']);
 });
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
