@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         User::factory()->create([
             'name' => 'Blanchar Senga-Vita',
             'email' => 'anchar2107@gmail.com',
@@ -48,13 +47,17 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             foreach ($user->jiris as $jiri) {
                 $selectedContacts = $user->contacts->random(random_int(3, 10));
+                $selectedProjects = $user->projects->random(random_int(1, 4));
+
                 foreach ($selectedContacts as $contact) {
                     $role = random_int(0, 1) ? 'students' : 'evaluators';
+
                     $jiri->$role()->attach([
                         $contact->id => [
                             'role' => str($role)->beforeLast('s'),
                         ],
                     ]);
+
 
                     if ($role === 'students') {
                         $contact->projects()->attach(
@@ -73,6 +76,15 @@ class DatabaseSeeder extends Seeder
                             'token' => Str::random(32),
                         ]);
                     }
+                }
+
+                foreach ($selectedProjects as $project) {
+                    $jiri->projects()->attach($project->id);
+                }
+
+                foreach ($selectedProjects as $project) {
+                    $weighting = 100/$jiri->projects->count();
+                    $jiri->projects()->updateExistingPivot($project->id, ['weighting' => $weighting]);
                 }
             }
         }
