@@ -30,10 +30,18 @@ class Jiri extends Model
             ->hasMany(Implementation::class);
     }
 
+
     public function projects(): BelongsToMany
     {
         return $this
-            ->belongsToMany(Project::class, 'implementations', 'jiri_id', 'project_id');
+            ->belongsToMany(Project::class, 'duties', 'jiri_id', 'project_id')
+            ->withPivot('weighting');
+    }
+
+    public function duties(): HasMany
+    {
+        return $this
+            ->hasMany(Duties::class);
     }
 
     public function attendances(): HasMany
@@ -45,7 +53,8 @@ class Jiri extends Model
     public function contacts(): BelongsToMany
     {
         return $this
-            ->belongsToMany(Contact::class, 'attendances', 'jiri_id', 'contact_id');
+            ->belongsToMany(Contact::class, 'attendances', 'jiri_id', 'contact_id')
+            ->wherePivot('role', '15');
     }
 
     public function students(): BelongsToMany

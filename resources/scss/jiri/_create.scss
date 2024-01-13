@@ -131,4 +131,12 @@
         @include cardBackground();
         background-color: $contact-card-color;
     }
+
+    .contact {
+        &__name{
+            &--project{
+                margin-block-end: 0.5rem;
+            }
+        }
+    }
 }

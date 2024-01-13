@@ -75,7 +75,7 @@ form {
     }
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=date] {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-color: #FFD7B1;
@@ -84,6 +84,7 @@ input[type=text], input[type=password] {
     border-width: 2px;
     font-size: 1rem;
     box-shadow: 0 0.25px 1px 0.25px rgba(00, 00, 00, 0.10);
+    font-family: lato, sans-serif;
 }
 
 input:focus-visible {

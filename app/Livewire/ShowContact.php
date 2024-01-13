@@ -34,9 +34,6 @@ class ShowContact extends Component
             $this->contacts->push(DB::table('contacts')->where('id', '=', $attendance->contact_id)->first());
         }
 
-        //pour chaque attendances qu'on a ajouté, je dois recuperer l'id du contact
-        //et ensuite, je dois recupérer le contact grâce cette id.
-
         return $this->contacts;
     }
 

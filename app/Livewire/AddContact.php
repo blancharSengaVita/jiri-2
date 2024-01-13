@@ -32,7 +32,6 @@ class AddContact extends Component
         $this->search = '';
         $this->modal = $modal;
         $this->contacts = new Collection();
-        info($role);
     }
 
     #[Computed]

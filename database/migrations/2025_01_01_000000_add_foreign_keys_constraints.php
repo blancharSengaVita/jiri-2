@@ -30,6 +30,11 @@ return new class extends Migration
             $table->foreignId('jiri_id')->constrained()->onDelete('cascade');
         });
 
+        Schema::table('duties', static function (Blueprint $table) {
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->foreignId('jiri_id')->constrained()->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -45,6 +50,10 @@ return new class extends Migration
         });
         Schema::table('attendances', static function (Blueprint $table) {
             $table->dropForeign(['contact_id']);
+            $table->dropForeign(['jiri_id']);
+        });
+        Schema::table('duties', static function (Blueprint $table) {
+            $table->dropForeign(['duty_id']);
             $table->dropForeign(['jiri_id']);
         });
 

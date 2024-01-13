@@ -9,7 +9,6 @@
             </svg>
         </div>
 
-
         <div class="add-contact__container--list">
             <div class="add-contact__list list">
                 <p class="title--2 list__title"> Not selected </p>

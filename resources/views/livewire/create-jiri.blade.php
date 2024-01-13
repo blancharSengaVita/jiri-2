@@ -1,4 +1,4 @@
-<div class="create-jiri">
+x<div class="create-jiri">
     <h1 class="sro"> {{ __('Création d’un jury')  }} </h1>
     <p class="title--1"> {{ __('Création d’un jury')  }} </p>
     <form class="create-jiri__form" method="post"
@@ -31,7 +31,7 @@
 
             <div class="create-jiri__field">
                 <label for="jiriDate"> {{ __('La date du Jiri') }} </label>
-                <input type="text" wire:model="jiriDate" id="jiriDate" name="jiriDate">
+                <input type="date" wire:model="jiriDate" id="jiriDate" name="jiriDate">
             </div>
 
             <button type="submit">
@@ -52,7 +52,7 @@
                     class="modal"
                     role="dialog"
                     tabindex="-1"
-                    x-show="isStudentModalOpen"
+                    x-cloak x-show="isStudentModalOpen"
                     x-transition
                 >
                     <livewire:add-contact
@@ -81,7 +81,7 @@
                     class="modal"
                     role="dialog"
                     tabindex="-1"
-                    x-show="isEvaluatorModalOpen"
+                   x-cloak x-show="isEvaluatorModalOpen"
                     x-transition
                 >
                     <livewire:add-contact
@@ -96,6 +96,32 @@
                 :role="'evaluator'"
             />
             <button class="add-contact__button" x-on:click="isEvaluatorModalOpen = true">Ajouter/retirer un Évaluateur
+            </button>
+        </fieldset>
+
+        <h2 class="sro">  {{ __('Projets ajoutés au jiri')  }} </h2>
+        <p class="title--2">
+            {{ __('Projets ajoutés au jiri')  }}
+        </p>
+        <fieldset class="create-jiri__fieldset">
+            <div>@error('jiriName') {{ $message }} @enderror</div>
+            @if(!$errors->any())
+                <div
+                    class="modal"
+                    role="dialog"
+                    tabindex="-1"
+                    x-cloak x-show="isProjectModalOpen"
+                    x-transition
+                >
+                    <livewire:add-project :modal="'isProjectModalOpen'" :jiriId="$jiriId" />
+                </div>
+            @endif
+
+            <livewire:show-project
+                :jiriId="$jiriId"
+                :weightings="$weightings"
+            />
+            <button class="add-contact__button" x-on:click="isProjectModalOpen = true">Ajouter/retirer un Projet
             </button>
         </fieldset>
     </form>

@@ -3,7 +3,6 @@
 return [
 
     /*
-    |--------------------------------------------------------------------------
     | Authentication Defaults
     |--------------------------------------------------------------------------
     |
@@ -40,6 +39,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'attendances' => [
+            'driver' => 'session',
+            'provider' => 'attendances',
+        ]
     ],
 
     /*
@@ -65,10 +69,15 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+
+        'attendances' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Attendance::class,
+        ],
+    ],
+
+    'attendances' => [
+        'driver' => 'attendances',
     ],
 
     /*

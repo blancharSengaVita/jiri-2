@@ -2,7 +2,10 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')"/>
 
-    <form class="form auth" method="POST" action="{{ route('login') }}">
+    <form
+        class="form auth"
+        method="POST" action="{{ route('login') }}"
+    >
         @csrf
         <h2 class="form__title auth__title"> {{ __('login.Log in') }} </h2>
 
@@ -25,16 +28,6 @@
             <x-input-error class="error auth__error" dusk="password__error" :messages="$errors->get('password')" class="mt-2"/>
         </div>
 
-        <!-- Remember Me -->
-        {{--        <div class="block mt-4">--}}
-        {{--            <label for="remember_me" class="inline-flex items-center">--}}
-        {{--                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">--}}
-        {{--                <span class="ms-2 text-sm text-gray-600">{{ __('login.Remember me') }}</span>--}}
-        {{--            </label>--}}
-        {{--        </div>--}}
-
-
-
 
         <!-- Log in -->
         <div class="container form__container auth__container auth__container--button">
@@ -43,7 +36,7 @@
             </x-primary-button>
         </div>
 
-{{--        <hr>--}}
+        {{--        <hr>--}}
         <!-- Forgot your password and Register -->
         <div class="container--link auth__container--link">
             @if (Route::has('password.request'))
@@ -58,5 +51,49 @@
                 </a>
             @endif
         </div>
+
+        <hr class="auth__separator">
+
+        <div class="container form__container auth__container auth__container--button">
+            <button x-on:click="isTokenModalOpen = true" type="button"> Se connecter avec un token ?</button>
+        </div>
     </form>
+
+
+    <div
+        x-data="{
+          isTokenModalOpen: false,
+          }"
+        x-on:keydown.escape="
+          isTokenModalOpen = false;
+          "
+    >
+
+        <button x-on:init="console.log(isTokenModalOpen) " type="button"> Se connecter avec un token ?</button>
+
+
+
+        <div
+            class="modal"
+            role="dialog"
+            tabindex="-1"
+            x-cloak x-show="isTokenModalOpen"
+            x-transition
+        >
+            <div class="create-jiri__add-contact add-contact" x-on:click.outside="isTokenModalOpen = false">
+                <div class="add-contact__container" x-on:click.outside="isTokenModalOpen = false">
+                    <form action="/token" method="POST">
+                        @csrf
+                        <input type="text" name="token" id="token">
+                        <button type="submit"> Se connecter</button>
+                        <x-input-error class="error auth__error" dusk="password__error" :messages="$errors->get('token')" class="mt-2"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {{--    </div>--}}
 </x-guest-layout>

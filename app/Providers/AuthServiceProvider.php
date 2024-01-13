@@ -9,6 +9,8 @@ use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Foundation\Application;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -26,6 +28,18 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->registerPolicies();
+
+        /**
+         * Register any application authentication / authorization services.
+         */
+
+        Auth::provider('attendances', function (Application $app, array $config) {
+            // Return an instance of Illuminate\Contracts\Auth\UserProvider...
+
+            return new attendancesUserProvider();
+        });
+
         Gate::define('handle-jiri', function (User $user, Jiri $jiri) {
             return $jiri->user_id === $user->id;
         });

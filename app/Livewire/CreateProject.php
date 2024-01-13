@@ -69,9 +69,7 @@ class CreateProject extends Component
         $this->name = '';
         $this->description = '';
         $this->linkInputs = new Collection();
-//        $this->linkInputs->push('');
         $this->tasks = new Collection();
-//        $this->tasks->push('');
     }
 
     #[On('editThisProject')]

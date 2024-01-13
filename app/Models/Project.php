@@ -28,4 +28,10 @@ class Project extends Model
         return $this
             ->hasMany(Implementation::class);
     }
+
+    public function duties(): HasMany
+    {
+        return $this
+            ->HasMany(Duties::class);
+    }
 }
