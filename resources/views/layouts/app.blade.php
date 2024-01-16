@@ -38,6 +38,9 @@
             </div>
         </div>
         {{ $slot }}
+        @auth('attendances')
+
+        @endauth
     </main>
 
 </div>

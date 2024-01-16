@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Token
+class Evaluators
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class Token
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
-            return response()->json('Unauthorized', 401);
+        if (Auth::guard('attendances')->check()) {
+            return redirect('evaluators');
         }
-//        dd(Auth::user());
+
         return $next($request);
     }
 }

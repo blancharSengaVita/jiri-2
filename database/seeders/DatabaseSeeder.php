@@ -23,6 +23,34 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('change_this'),
         ]);
 
+        $sansjiri = User::factory()
+            ->has(Project::factory()->count(4))
+            ->has(Contact::factory()->count(10))
+            ->create([
+            'name' => 'SansJiri',
+            'email' => 'SansJiri@gmail.com',
+            'password' => bcrypt('change_this'),
+        ]);
+
+        $sanscontact = User::factory()
+            ->has(Project::factory()->count(4))
+            ->has(Jiri::factory()->count(2))
+            ->create([
+            'name' => 'SansContacts',
+            'email' => 'SansContacts@gmail.com',
+            'password' => bcrypt('change_this'),
+        ]);
+
+        $sansprojet = User::factory()
+            ->has(Contact::factory()->count(10))
+            ->has(Jiri::factory()->count(2))
+            ->create([
+            'name' => 'SansProjets',
+            'email' => 'SansProjets@gmail.com',
+            'password' => bcrypt('change_this'),
+        ]);
+
+
         $dominique = User::factory()
             ->has(Jiri::factory()->count(2))
             ->has(Project::factory()->count(4))

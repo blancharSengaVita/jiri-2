@@ -14,17 +14,17 @@ class TokenController extends Controller
 {
     public function store(Request $request)
     {
-        if (Attendance::where('token', $request->token)->first()) {
 
+        if (Attendance::where('token', $request->token)->first()) {
             $evaluators = Attendance::where('token', $request->token)->first();
             $request->session()->regenerate();
             Auth::guard('attendances')->login($evaluators);
 
-            return redirect('dashboard');
+            return redirect('evaluators');
         }
 
         return back()->withErrors([
-            'token' => 'invalid credentials',
+            'token' => 'Token incorrecte',
         ]);
     }
 

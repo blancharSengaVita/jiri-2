@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactHomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EvaluatorsController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\jiriController;
 use App\Http\Controllers\ProfileController;
@@ -23,19 +24,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomepageController::class, 'index']);
-
 Route::get('/mail', [MailController::class, 'index']);
-
 Route::post('/mail', [MailController::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('token')->name('dashboard');
-Route::post('/dashboard', [DashboardController::class, 'store'])->middleware('token')->name('dashboard');
-
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::post('/dashboard', [DashboardController::class, 'store'])->name('dashboard');
+Route::middleware('auth:attendances')->group(function () {
+    Route::get('/evaluators', [EvaluatorsController::class, 'index'])->name('evaluator');
+});
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -55,6 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/projets/{project}', [ProjectController::class, 'show']);
     Route::delete('/projets/{project}', [ProjectController::class, 'destroy']);
 });
-
 
 require __DIR__ . '/auth.php';
